@@ -11,7 +11,7 @@ const SERVICE_OPTIONS = [
   { value: "other", label: "Other" },
 ] as const;
 
-type FormState = "idle" | "submitting" | "success" | "error";
+type FormState = "idle" | "submitting" | "fading" | "success" | "error";
 
 interface FormData {
   name: string;
@@ -109,7 +109,8 @@ export function ContactForm() {
 
       if (!res.ok) throw new Error("Submission failed");
 
-      setFormState("success");
+      setFormState("fading");
+      setTimeout(() => setFormState("success"), 280);
     } catch {
       setFormState("error");
       errorRef.current?.focus();
@@ -131,7 +132,7 @@ export function ContactForm() {
   return (
     <form
       ref={formRef}
-      className={styles.contactForm}
+      className={`${styles.contactForm}${formState === "fading" ? ` ${styles.contactFormFading}` : ""}`}
       onSubmit={handleSubmit}
       noValidate
     >

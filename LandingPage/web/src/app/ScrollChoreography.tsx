@@ -104,6 +104,8 @@ export function ScrollChoreography() {
               index === activeIndex ? "active" : index < activeIndex ? "passed" : "upcoming";
             stop.style.setProperty("--launch-stop-distance", Math.min(distance, 3).toFixed(2));
           });
+          launchMap.dataset.launchVisibility =
+            activeIndex === 0 && scrollY < pageStart + viewportHeight * 0.72 ? "hidden" : "visible";
         });
       }
 
@@ -150,17 +152,19 @@ export function ScrollChoreography() {
           el: card,
           index,
           centerX: card.offsetLeft + card.offsetWidth / 2,
-          centerY: card.offsetTop + card.offsetHeight / 2
+          centerY: card.offsetTop + card.offsetHeight / 2,
         }));
+        const middleIndex = (processCards.length - 1) / 2;
 
         newUpdaters.push(() => {
           if (reduceMotion.matches) {
             processSection.style.setProperty("--process-progress", "1");
-            processCards.forEach((card) => {
+            processCards.forEach((card, index) => {
               card.style.setProperty("--process-stack-x", "0px");
               card.style.setProperty("--process-stack-y", "0px");
               card.style.setProperty("--process-stack-rotate", "0deg");
               card.style.setProperty("--process-card-scale", "1");
+              card.style.setProperty("--process-z", String(index + 1));
             });
             return;
           }
@@ -169,7 +173,6 @@ export function ScrollChoreography() {
           const remaining = 1 - progress;
           const stackCenterX = gridClientWidth / 2;
           const stackCenterY = gridClientHeight / 2;
-          const middleIndex = (processCards.length - 1) / 2;
 
           cardMetrics.forEach(({ el, index, centerX, centerY }) => {
             const stackX = (stackCenterX - centerX) * remaining;
@@ -180,7 +183,7 @@ export function ScrollChoreography() {
             el.style.setProperty("--process-stack-y", Math.round(stackY) + "px");
             el.style.setProperty("--process-stack-rotate", rotate.toFixed(2) + "deg");
             el.style.setProperty("--process-card-scale", scale.toFixed(3));
-            el.style.setProperty("--process-z", String(processCards.length - index));
+            el.style.setProperty("--process-z", String(index + 1));
           });
           processSection.style.setProperty("--process-progress", progress.toFixed(3));
         });

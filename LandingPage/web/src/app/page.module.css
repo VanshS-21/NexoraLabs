@@ -3082,6 +3082,12 @@
   transform: translateY(-5px) scale(1.045);
 }
 
+.launchMap[data-launch-visibility="hidden"] {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(18px) rotate(-0.7deg);
+}
+
 @media (min-width: 1120px) {
   .launchMap {
     display: grid;

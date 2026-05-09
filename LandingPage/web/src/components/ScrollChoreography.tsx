@@ -45,6 +45,26 @@ interface CachedRefs {
   backToTop: HTMLButtonElement | null;
 }
 
+interface CachedMetrics {
+  greetingCopyTop: number;
+  inkLineTops: number[];
+  processGridTop: number;
+  processGridWidth: number;
+  processGridHeight: number;
+  processCardCenters: Array<{ x: number; y: number }>;
+  servicesTop: number;
+  servicesHeight: number;
+  serviceRailScrollHeight: number;
+  serviceShellClientHeight: number;
+  workStageTop: number;
+  workStageHeight: number;
+  workCenterCenter: { x: number; y: number };
+  workCardCenters: Array<{ x: number; y: number }>;
+  testimonialTop: number;
+  testimonialHeight: number;
+  launchSectionTops: Array<{ top: number; bottom: number }>;
+}
+
 export function ScrollChoreography() {
   const { scrollY } = useScroll();
   const [metrics, setMetrics] = useState(0);
@@ -58,6 +78,14 @@ export function ScrollChoreography() {
     workSection: null, workStage: null, workCenter: null, workCards: [],
     testimonialSection: null, testimonialCards: [], testimonialNavDots: [],
     backToTop: null,
+  });
+  const cachedMetrics = useRef<CachedMetrics>({
+    greetingCopyTop: 0, inkLineTops: [],
+    processGridTop: 0, processGridWidth: 0, processGridHeight: 0, processCardCenters: [],
+    servicesTop: 0, servicesHeight: 0, serviceRailScrollHeight: 0, serviceShellClientHeight: 0,
+    workStageTop: 0, workStageHeight: 0, workCenterCenter: { x: 0, y: 0 }, workCardCenters: [],
+    testimonialTop: 0, testimonialHeight: 0,
+    launchSectionTops: [],
   });
 
   // Recalculate element positions on resize / load / fonts ready
@@ -127,6 +155,58 @@ export function ScrollChoreography() {
     r.testimonialNavDots = getAll<HTMLButtonElement>(r.testimonialSection, "[data-testimonial-nav-dot]");
 
     r.backToTop = document.querySelector<HTMLButtonElement>("[data-back-to-top]");
+
+    // Cache layout metrics (avoids reflow in scroll handler)
+    const m = cachedMetrics.current;
+    const copyEl = r.greetingSection?.querySelector<HTMLElement>("[data-greeting-copy]");
+    const greetingTarget = copyEl || r.greetingSection;
+    m.greetingCopyTop = greetingTarget ? getPageTop(greetingTarget) : 0;
+    m.inkLineTops = r.greetingInkLines.map(getPageTop);
+
+    if (r.processGrid) {
+      m.processGridTop = getPageTop(r.processGrid);
+      m.processGridWidth = r.processGrid.clientWidth;
+      m.processGridHeight = r.processGrid.clientHeight;
+      m.processCardCenters = r.processCards.map((card) => ({
+        x: card.offsetLeft + card.offsetWidth / 2,
+        y: card.offsetTop + card.offsetHeight / 2,
+      }));
+    }
+
+    if (r.servicesSection) {
+      m.servicesTop = getPageTop(r.servicesSection);
+      m.servicesHeight = r.servicesSection.offsetHeight;
+      m.serviceRailScrollHeight = r.serviceRail?.scrollHeight ?? 0;
+      m.serviceShellClientHeight = r.serviceShell?.clientHeight ?? 0;
+    }
+
+    if (r.workStage && r.workCenter) {
+      m.workStageTop = getPageTop(r.workStage);
+      m.workStageHeight = r.workStage.offsetHeight;
+      const stageRect = r.workStage.getBoundingClientRect();
+      const centerRect = r.workCenter.getBoundingClientRect();
+      m.workCenterCenter = {
+        x: centerRect.left - stageRect.left + centerRect.width / 2,
+        y: centerRect.top - stageRect.top + centerRect.height / 2,
+      };
+      m.workCardCenters = r.workCards.map((card) => {
+        const cr = card.getBoundingClientRect();
+        return {
+          x: cr.left - stageRect.left + card.offsetWidth / 2,
+          y: cr.top - stageRect.top + card.offsetHeight / 2,
+        };
+      });
+    }
+
+    if (r.testimonialSection) {
+      m.testimonialTop = getPageTop(r.testimonialSection);
+      m.testimonialHeight = r.testimonialSection.offsetHeight;
+    }
+
+    m.launchSectionTops = launchTargets
+      .map((sel) => document.querySelector<HTMLElement>(sel))
+      .filter((s): s is HTMLElement => Boolean(s))
+      .map((s) => ({ top: getPageTop(s), bottom: getPageTop(s) + s.offsetHeight }));
   }, [metrics]);
 
   // IntersectionObserver-based reveals (runs once per metrics recalc)
@@ -217,6 +297,7 @@ export function ScrollChoreography() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const viewportHeight = window.innerHeight || 1;
     const r = cachedRefs.current;
+    const m = cachedMetrics.current;
 
     // Top Nav scroll state (hysteresis prevents flicker at threshold)
     if (r.topNav) {
@@ -232,10 +313,7 @@ export function ScrollChoreography() {
 
     // Launch Map
     if (r.launchMap && r.launchFill && r.launchStops.length) {
-      const launchSections = launchTargets
-        .map((sel) => document.querySelector<HTMLElement>(sel))
-        .filter((s): s is HTMLElement => Boolean(s))
-        .map((s) => ({ top: getPageTop(s), bottom: getPageTop(s) + s.offsetHeight }));
+      const launchSections = m.launchSectionTops;
 
       if (launchSections.length) {
         const pageStart = launchSections[0].top;
@@ -254,6 +332,7 @@ export function ScrollChoreography() {
           const distance = Math.abs(index - activeIndex);
           stop.dataset.launchState = index === activeIndex ? "active" : index < activeIndex ? "passed" : "upcoming";
           stop.style.setProperty("--launch-stop-distance", Math.min(distance, 3).toFixed(2));
+          stop.setAttribute("aria-current", index === activeIndex ? "true" : "false");
         });
         r.launchMap.dataset.launchVisibility =
           activeIndex === 0 && latestScrollY < pageStart + viewportHeight * 0.72 ? "hidden" : "visible";
@@ -262,14 +341,11 @@ export function ScrollChoreography() {
 
     // Greeting Section
     if (r.greetingSection) {
-      const copy = r.greetingSection.querySelector<HTMLElement>("[data-greeting-copy]");
-      const target = copy || r.greetingSection;
-      const greetingOffsetTop = getPageTop(target);
-      const progress = clamp((viewportHeight * 0.84 - (greetingOffsetTop - latestScrollY)) / (viewportHeight * 0.36));
+      const progress = clamp((viewportHeight * 0.84 - (m.greetingCopyTop - latestScrollY)) / (viewportHeight * 0.36));
       r.greetingSection.style.setProperty("--scroll-progress", progress.toFixed(3));
 
-      r.greetingInkLines.forEach((line) => {
-        const offsetTop = getPageTop(line);
+      r.greetingInkLines.forEach((line, index) => {
+        const offsetTop = m.inkLineTops[index] ?? 0;
         const ink = clamp((viewportHeight * 0.82 - (offsetTop - latestScrollY)) / (viewportHeight * 0.24));
         line.style.setProperty("--ink-percent", Math.round(ink * 100) + "%");
       });
@@ -294,18 +370,16 @@ export function ScrollChoreography() {
           card.style.setProperty("--process-z", String(index + 1));
         });
       } else {
-        const gridOffsetTop = getPageTop(r.processGrid);
-        const gridClientWidth = r.processGrid.clientWidth;
-        const gridClientHeight = r.processGrid.clientHeight;
-        const progress = easeOutQuart(clamp((viewportHeight * 0.86 - (gridOffsetTop - latestScrollY)) / (viewportHeight * 0.48)));
+        const progress = easeOutQuart(clamp((viewportHeight * 0.86 - (m.processGridTop - latestScrollY)) / (viewportHeight * 0.48)));
         const remaining = 1 - progress;
-        const stackCenterX = gridClientWidth / 2;
-        const stackCenterY = gridClientHeight / 2;
+        const stackCenterX = m.processGridWidth / 2;
+        const stackCenterY = m.processGridHeight / 2;
         const middleIndex = (r.processCards.length - 1) / 2;
 
         r.processCards.forEach((card, index) => {
-          const centerX = card.offsetLeft + card.offsetWidth / 2;
-          const centerY = card.offsetTop + card.offsetHeight / 2;
+          const center = m.processCardCenters[index] ?? { x: 0, y: 0 };
+          const centerX = center.x;
+          const centerY = center.y;
           const stackX = (stackCenterX - centerX) * remaining;
           const stackY = (stackCenterY - centerY) * remaining;
           const rotate = (middleIndex - index) * 2.15 * remaining;
@@ -331,10 +405,10 @@ export function ScrollChoreography() {
         });
         r.serviceNavDots.forEach((dot) => { dot.dataset.dotState = "active"; });
       } else {
-        const sectionOffsetTop = getPageTop(r.servicesSection);
-        const sectionOffsetHeight = r.servicesSection.offsetHeight;
-        const railScrollHeight = r.serviceRail.scrollHeight;
-        const shellClientHeight = r.serviceShell.clientHeight;
+        const sectionOffsetTop = m.servicesTop;
+        const sectionOffsetHeight = m.servicesHeight;
+        const railScrollHeight = m.serviceRailScrollHeight;
+        const shellClientHeight = m.serviceShellClientHeight;
         const scrollRange = Math.max(1, sectionOffsetHeight - viewportHeight);
         const progress = clamp(-(sectionOffsetTop - latestScrollY) / scrollRange);
         const maxShift = Math.max(0, railScrollHeight - shellClientHeight);
@@ -350,14 +424,15 @@ export function ScrollChoreography() {
         r.serviceNavDots.forEach((dot, index) => {
           const roundedActive = Math.round(activeIndex);
           dot.dataset.dotState = index === roundedActive ? "active" : index < roundedActive ? "passed" : "upcoming";
+          dot.setAttribute("aria-current", index === roundedActive ? "true" : "false");
         });
       }
     }
 
     // Work Section
     if (r.workSection && r.workStage && r.workCenter && r.workCards.length) {
-      const stageOffsetTop = getPageTop(r.workStage);
-      const stageOffsetHeight = r.workStage.offsetHeight;
+      const stageOffsetTop = m.workStageTop;
+      const stageOffsetHeight = m.workStageHeight;
       const stageTop = stageOffsetTop - latestScrollY;
       const stageBottom = stageTop + stageOffsetHeight;
       const visibleHeight = Math.max(0, Math.min(stageBottom, viewportHeight) - Math.max(stageTop, 0));
@@ -365,14 +440,13 @@ export function ScrollChoreography() {
       const remaining = 1 - spreadProgress;
       const middleIndex = (r.workCards.length - 1) / 2;
 
-      const stageRect = r.workStage.getBoundingClientRect();
-      const centerRect = r.workCenter.getBoundingClientRect();
-      const centerX = centerRect.left - stageRect.left + centerRect.width / 2;
-      const centerY = centerRect.top - stageRect.top + centerRect.height / 2;
+      const centerX = m.workCenterCenter.x;
+      const centerY = m.workCenterCenter.y;
 
       r.workCards.forEach((card, index) => {
-        const cardCenterX = card.getBoundingClientRect().left - stageRect.left + card.offsetWidth / 2;
-        const cardCenterY = card.getBoundingClientRect().top - stageRect.top + card.offsetHeight / 2;
+        const cardCenter = m.workCardCenters[index] ?? { x: 0, y: 0 };
+        const cardCenterX = cardCenter.x;
+        const cardCenterY = cardCenter.y;
         const targetRotate = Number(card.dataset.workRotate || 0);
         const stackRotate = (index - middleIndex) * 2.4;
         const stackX = (centerX - cardCenterX) * remaining;
@@ -406,8 +480,8 @@ export function ScrollChoreography() {
         });
         r.testimonialNavDots.forEach((dot) => { dot.dataset.dotState = "active"; });
       } else {
-        const sectionOffsetTop = getPageTop(r.testimonialSection);
-        const sectionOffsetHeight = r.testimonialSection.offsetHeight;
+        const sectionOffsetTop = m.testimonialTop;
+        const sectionOffsetHeight = m.testimonialHeight;
         const scrollRange = Math.max(1, sectionOffsetHeight - viewportHeight);
         const progress = clamp(-(sectionOffsetTop - latestScrollY) / scrollRange);
         const active = progress * Math.max(1, r.testimonialCards.length - 1);
@@ -438,6 +512,7 @@ export function ScrollChoreography() {
         r.testimonialNavDots.forEach((dot, index) => {
           const roundedActive = Math.round(active);
           dot.dataset.dotState = index === roundedActive ? "active" : index < roundedActive ? "passed" : "upcoming";
+          dot.setAttribute("aria-current", index === roundedActive ? "true" : "false");
         });
       }
     }

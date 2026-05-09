@@ -54,6 +54,7 @@ export function ContactForm() {
 
   const formRef = useRef<HTMLFormElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
@@ -101,16 +102,25 @@ export function ContactForm() {
     }
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 12_000);
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (!res.ok) throw new Error("Submission failed");
 
       setFormState("fading");
-      setTimeout(() => setFormState("success"), 280);
+      setTimeout(() => {
+        setFormState("success");
+        setTimeout(() => successRef.current?.focus(), 60);
+      }, 280);
     } catch {
       setFormState("error");
       errorRef.current?.focus();
@@ -119,7 +129,7 @@ export function ContactForm() {
 
   if (formState === "success") {
     return (
-      <div className={styles.contactFormSuccess} role="status" aria-live="polite">
+      <div ref={successRef} className={styles.contactFormSuccess} role="status" aria-live="polite" tabIndex={-1}>
         <div className={styles.contactFormSuccessIcon} aria-hidden="true" />
         <h3 className={styles.contactFormSuccessTitle}>Got it.</h3>
         <p className={styles.contactFormSuccessCopy}>
@@ -164,11 +174,13 @@ export function ContactForm() {
           name="name"
           type="text"
           autoComplete="name"
+          maxLength={120}
           className={styles.contactFormInput}
           placeholder="Your name"
           value={formData.name}
           onChange={handleChange}
           onBlur={handleBlur}
+          aria-required="true"
           aria-invalid={!!fieldErrors.name}
           aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
           disabled={formState === "submitting"}
@@ -189,11 +201,13 @@ export function ContactForm() {
           name="email"
           type="email"
           autoComplete="email"
+          maxLength={254}
           className={styles.contactFormInput}
           placeholder="you@business.com"
           value={formData.email}
           onChange={handleChange}
           onBlur={handleBlur}
+          aria-required="true"
           aria-invalid={!!fieldErrors.email}
           aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
           disabled={formState === "submitting"}
@@ -217,6 +231,7 @@ export function ContactForm() {
             value={formData.service}
             onChange={handleChange}
             onBlur={handleBlur}
+            aria-required="true"
             aria-invalid={!!fieldErrors.service}
             aria-describedby={fieldErrors.service ? "contact-service-error" : undefined}
             disabled={formState === "submitting"}
@@ -242,12 +257,14 @@ export function ContactForm() {
         <textarea
           id="contact-message"
           name="message"
+          maxLength={2000}
           className={styles.contactFormTextarea}
           placeholder="What's your business about?"
           rows={4}
           value={formData.message}
           onChange={handleChange}
           onBlur={handleBlur}
+          aria-required="true"
           aria-invalid={!!fieldErrors.message}
           aria-describedby={fieldErrors.message ? "contact-message-error" : undefined}
           disabled={formState === "submitting"}

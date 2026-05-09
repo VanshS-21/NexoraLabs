@@ -1,42 +1,35 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 
 const footerLinks = [
-  { label: "Work", short: "Wr", href: "#work" },
-  { label: "Plans", short: "Pl", href: "#pricing" },
-  { label: "FAQs", short: "Qa", href: "#faqs" },
+  { label: "Work", href: "#work" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "FAQs", href: "#faqs" },
+  { label: "Process", href: "#process" },
 ] as const;
 
 export function FooterSection() {
   return (
     <footer id="contact" className={styles.contactSection}>
-      <Image
-        src="/footer-sunrise.png"
-        alt=""
-        fill
-        sizes="100vw"
-        className={styles.footerImage}
-        priority={false}
-      />
       <div className={styles.footerOverlay} aria-hidden="true" />
       <div className={styles.footerContent}>
+        <div className={styles.footerAvailability}>
+          <span aria-hidden="true" />
+          Currently accepting new projects for 2026
+        </div>
+        <a className={styles.footerEmail} href="mailto:hello@nexoralabs.com">
+          <span>hello@</span>
+          <span>nexoralabs.com</span>
+        </a>
         <nav className={styles.footerSocials} aria-label="Footer links">
           {footerLinks.map((link) => (
-            <a href={link.href} aria-label={link.label} key={link.label}>
-              {link.short}
+            <a href={link.href} key={link.label}>
+              {link.label}
             </a>
           ))}
         </nav>
-        <p className={styles.footerAvailability}>
-          <span aria-hidden="true" />
-          Available for new projects
-        </p>
-        <a className={styles.footerEmail} href="mailto:hello@nexoralabs.com">
-          hello@nexoralabs.com
-        </a>
         <div className={styles.footerRule} aria-hidden="true" />
-        <p className={styles.footerTagline}>We make local websites feel worth clicking.</p>
-        <p className={styles.footerCopyright}>&copy;2026 Nexora Labs</p>
+        <p className={styles.footerTagline}>Boutique web studio for local brands.</p>
+        <p className={styles.footerCopyright}>&copy;2026 Nexora Labs &bull; All rights reserved</p>
       </div>
     </footer>
   );

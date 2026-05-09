@@ -8,22 +8,22 @@ import styles from "./page.module.css";
 
 const processSteps = [
   {
-    label: "Discover",
+    label: "Dump the puzzle",
     copy: "We learn your offer, audience, local market, and what must happen after a visitor lands.",
     icon: "target",
   },
   {
-    label: "Plan",
+    label: "Sort the pieces",
     copy: "We turn scattered content, offers, photos, and preferences into a clear build plan.",
     icon: "spark",
   },
   {
-    label: "Refine",
+    label: "Make it click",
     copy: "You review one strong direction with us, then we tighten the story, visuals, and flow.",
     icon: "wand",
   },
   {
-    label: "Launch",
+    label: "Hand it over",
     copy: "Launch with a fast custom site, simple handover docs, analytics, and ownership clarity.",
     icon: "chart",
   },
@@ -152,8 +152,9 @@ function ProcessGlyph({ type }: { type: string }) {
 export default function Home() {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.announcementBanner}>
-        Websites for local businesses.
+      <a href="#main" className="visually-hidden">Skip to main content</a>
+      <div className={styles.announcementBanner} role="status" aria-label="Current focus">
+        Now shaping playful web launches for local brands.
       </div>
 
       <aside className={styles.sideTab} aria-label="Nexora honors">
@@ -161,17 +162,17 @@ export default function Home() {
         <span>Nexora Works</span>
       </aside>
 
-      <nav className={styles.fixedBottomNav} aria-label="Section navigation">
-        <a href="#process">
+      <nav className={styles.fixedBottomNav} aria-label="Mobile section navigation">
+        <a href="#process" aria-label="Go to Process section">
           <span>01</span> Process
         </a>
-        <a href="#work">
+        <a href="#work" aria-label="Go to Work section">
           <span>02</span> Work
         </a>
-        <a href="#pricing">
+        <a href="#pricing" aria-label="Go to Pricing section">
           <span>03</span> Pricing
         </a>
-        <a href="#contact" className={styles.bottomNavCta}>
+        <a href="#contact" className={styles.bottomNavCta} aria-label="Go to Contact section">
           <span>04</span> Contact
         </a>
       </nav>
@@ -191,13 +192,26 @@ export default function Home() {
         </nav>
       </header>
 
-      <main>
+      <main id="main">
         <section id="about" className={styles.heroSection}>
+          <div className={styles.heroScene} aria-hidden="true">
+            <div className={`${styles.heroArtifact} ${styles.heroArtifactBistro}`}>
+              <Image src="/work-bistro.svg" alt="" fill sizes="22vw" />
+            </div>
+            <div className={`${styles.heroArtifact} ${styles.heroArtifactClinic}`}>
+              <Image src="/work-clinic.svg" alt="" fill sizes="18vw" />
+            </div>
+            <div className={`${styles.heroArtifact} ${styles.heroArtifactFitness}`}>
+              <Image src="/work-fitness.svg" alt="" fill sizes="20vw" />
+            </div>
+            <span className={styles.heroSticker}>No templates</span>
+            <span className={styles.heroStamp}>Done for you</span>
+          </div>
           <div className={styles.heroIntro}>
             <p>
-              We design and build trust-ready websites for clinics, coaches,
-              creators, founders, and premium local brands that need to look
-              credible fast.
+              Bring the notes, photos, half-written offers, and the slightly
+              messy idea. We turn it into a custom website that feels credible,
+              lively, and ready for real customers.
             </p>
             <div className={styles.heroActions}>
               <a href="#contact" className={styles.primaryAction}>
@@ -216,8 +230,9 @@ export default function Home() {
           </div>
           <div className={styles.heroTitleWrap}>
             <h1 className={styles.heroTitle}>
-              <span>Local Websites</span>
-              <span>That Earn Trust</span>
+              <span>Websites</span>
+              <span>That Feel</span>
+              <span>Handmade</span>
             </h1>
           </div>
         </section>
@@ -226,9 +241,9 @@ export default function Home() {
 
         <section id="process" className={styles.processSection} data-process-section>
           <div className={styles.sectionKicker}>Process</div>
-          <h2>Getting started is easy</h2>
+          <h2>We make the messy middle fun</h2>
           <p className={styles.sectionLead}>
-            Our process is built for busy owners who want quality without the wait: simple, smooth, and stress-free.
+            A clear path for busy owners: hand us the clutter, review the important choices, and get a polished site without managing the whole build.
           </p>
           <div className={styles.processGrid} data-process-grid>
             {processSteps.map((step) => (
@@ -291,7 +306,11 @@ export default function Home() {
         <TestimonialStack />
 
         <section id="pricing" className={styles.pricingSection}>
-          <div className={styles.sectionKicker}>Pricing</div>
+          <div className={styles.pricingIntro}>
+            <div className={styles.sectionKicker}>Pricing</div>
+            <h2>Pick a starting shape</h2>
+            <p>Simple proposal-style packages, with enough room to tailor the build around your actual business.</p>
+          </div>
           <div className={styles.pricingGrid}>
             {packages.map((item) => (
               <article className={`${styles.pricingCard} ${item.featured ? styles.featuredPricing : ""}`} key={item.name}>

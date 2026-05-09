@@ -9,6 +9,8 @@ const workProjects = [
     image: "/work-bistro.svg",
     placement: "workTopLeft",
     tone: "workSage",
+    sticker: "Bookings",
+    rotate: "-3.4",
   },
   {
     title: "Northside Clinic",
@@ -17,6 +19,8 @@ const workProjects = [
     image: "/work-clinic.svg",
     placement: "workTopRight",
     tone: "workSky",
+    sticker: "Care routes",
+    rotate: "2.7",
   },
   {
     title: "Pulse Coach",
@@ -25,6 +29,8 @@ const workProjects = [
     image: "/work-fitness.svg",
     placement: "workBottomLeft",
     tone: "workInk",
+    sticker: "Lead ready",
+    rotate: "1.8",
   },
   {
     title: "Bloom Studio",
@@ -33,46 +39,51 @@ const workProjects = [
     image: "/work-salon.svg",
     placement: "workBottomRight",
     tone: "workPeach",
+    sticker: "Launch kit",
+    rotate: "-2.2",
   },
 ] as const;
 
 export function WorkShowcase() {
   return (
-    <>
-      <section id="work" className={styles.workSection}>
-        <div className={styles.workStage}>
-          <div className={styles.workHeader}>
-            <p className={styles.workKicker}>Selected work</p>
-            <h2>Proof-shaped websites</h2>
-            <p>Each direction is built around the job your buyer needs the site to do before they contact you.</p>
-            <a href="#contact">Talk through your project</a>
-          </div>
-
-          <div className={styles.workProjectField} aria-label="Selected website projects">
-            {workProjects.map((project) => (
-              <article
-                className={`${styles.workProject} ${styles[project.placement]} ${styles[project.tone]}`}
-                aria-label={`${project.title}, ${project.category}`}
-                key={project.title}
-              >
-                <div className={styles.workProjectImage}>
-                  <Image
-                    src={project.image}
-                    alt={`Preview of ${project.title}`}
-                    fill
-                    sizes="(max-width: 760px) 72vw, 38vw"
-                  />
-                </div>
-                <div className={styles.workProjectMeta}>
-                  <span>{project.category}</span>
-                  <h3>{project.title}</h3>
-                  <p>{project.proof}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+    <section id="work" className={styles.workSection} data-work-section>
+      <div className={styles.workStage} data-work-stage>
+        <div className={styles.workHeader} data-work-center>
+          <p className={styles.workKicker}>Selected work</p>
+          <h2>Proof, pinned to the wall</h2>
+          <p>Every preview is built around a practical job: bookings, trust, enquiries, launch confidence, and fewer confused customers.</p>
+          <a href="#contact">Talk through your project</a>
         </div>
-      </section>
-    </>
+
+        <div className={styles.workProjectField} aria-label="Selected website projects">
+          {workProjects.map((project) => (
+            <article
+              className={`${styles.workProject} ${styles[project.placement]} ${styles[project.tone]}`}
+              aria-label={`${project.title}, ${project.category}`}
+              data-work-card
+              data-work-rotate={project.rotate}
+              key={project.title}
+            >
+              <span className={styles.workSticker} aria-hidden="true">
+                {project.sticker}
+              </span>
+              <div className={styles.workProjectImage}>
+                <Image
+                  src={project.image}
+                  alt={`Preview of ${project.title}`}
+                  fill
+                  sizes="(max-width: 760px) 92vw, 48vw"
+                />
+              </div>
+              <div className={styles.workProjectMeta}>
+                <span>{project.category}</span>
+                <h3>{project.title}</h3>
+                <p>{project.proof}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

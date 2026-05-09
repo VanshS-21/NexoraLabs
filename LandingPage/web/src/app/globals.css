@@ -8,8 +8,13 @@
   --color-primary-hover: oklch(52% 0.18 var(--hue-brand));
   
   /* Warm cream background */
-  --color-bg: oklch(97% 0.015 var(--hue-brand));
-  --color-surface: oklch(99% 0.005 var(--hue-brand));
+  --color-bg: oklch(96% 0.03 75);
+  --color-surface: oklch(99% 0.01 70);
+  --color-lime: oklch(82% 0.18 132);
+  --color-sky: oklch(80% 0.11 214);
+  --color-rose: oklch(76% 0.16 350);
+  --color-yellow: oklch(90% 0.12 88);
+  --color-ink: oklch(19% 0.025 var(--hue-brand));
   
   /* Text */
   --color-text: oklch(25% 0.02 var(--hue-brand));
@@ -60,9 +65,9 @@
   --radius-full: 9999px;
 
   /* Elevation (Choreographed Depth) */
-  --shadow-sm: 0 4px 12px oklch(0% 0 0 / 0.05);
-  --shadow-md: 0 8px 24px oklch(0% 0 0 / 0.08);
-  --shadow-lg: 0 16px 48px oklch(0% 0 0 / 0.12);
+  --shadow-sm: 0 4px 12px oklch(28% 0.02 var(--hue-brand) / 0.05);
+  --shadow-md: 0 8px 24px oklch(28% 0.02 var(--hue-brand) / 0.08);
+  --shadow-lg: 0 16px 48px oklch(28% 0.02 var(--hue-brand) / 0.12);
   
   /* Transitions */
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.1);

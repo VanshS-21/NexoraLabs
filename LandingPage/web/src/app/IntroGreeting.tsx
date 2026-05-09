@@ -1,20 +1,20 @@
 import styles from "./page.module.css";
 
 const capabilityPills = [
-  { label: "Design systems", icon: "grid", side: "left", slot: "top" },
-  { label: "UI/UX", icon: "square", side: "left", slot: "middle" },
-  { label: "Research", icon: "search", side: "left", slot: "bottom" },
-  { label: "Prototyping", icon: "frame", side: "right", slot: "top" },
-  { label: "Animation", icon: "motion", side: "right", slot: "middle" },
-  { label: "Strategy", icon: "compass", side: "right", slot: "bottom" },
+  { label: "Design systems", icon: "grid", pos: "pos-0", drift: "34" },
+  { label: "UI/UX", icon: "square", pos: "pos-1", drift: "-42" },
+  { label: "Research", icon: "search", pos: "pos-2", drift: "52" },
+  { label: "Prototyping", icon: "frame", pos: "pos-3", drift: "-38" },
+  { label: "Animation", icon: "motion", pos: "pos-4", drift: "28" },
+  { label: "Strategy", icon: "compass", pos: "pos-5", drift: "-48" },
 ] as const;
 
 const greetingLines = [
-  "We help local businesses",
-  "establish a clear digital",
-  "connection",
-  "between their offer and",
-  "ready customers",
+  "Strategy on the left",
+  "taste on the right",
+  "all the fiddly web bits",
+  "quietly handled",
+  "before launch day",
 ];
 
 function CapabilityGlyph({ type }: { type: string }) {
@@ -94,9 +94,9 @@ export function IntroGreeting() {
         <div className={styles.capabilityOrbit} aria-label="Nexora capabilities">
           {capabilityPills.map((pill) => (
             <div
-              className={`${styles.capabilityPill} ${styles[pill.side]} ${styles[pill.slot]}`}
+              className={`${styles.capabilityPill} ${styles[pill.pos]}`}
               data-capability-pill
-              data-pill-side={pill.side}
+              data-pill-drift={pill.drift}
               key={pill.label}
             >
               <span className={`${styles.capabilityIcon} ${styles[pill.icon]}`}>

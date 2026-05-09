@@ -246,17 +246,6 @@ export default function Home() {
             <div className={`${styles.heroArtifact} ${styles.heroArtifactClinic}`}>
               <Image src="/work-clinic.svg" alt="" fill sizes="18vw" />
             </div>
-            <div className={`${styles.heroArtifact} ${styles.heroArtifactFitness}`}>
-              <Image src="/work-fitness.svg" alt="" fill sizes="20vw" />
-            </div>
-            <span className={styles.heroSticker}>No templates</span>
-            <span className={styles.heroStamp}>Done for you</span>
-            <div className={styles.heroLaunchNote}>
-              <span>Website job</span>
-              <b>Clarify</b>
-              <b>Prove</b>
-              <b>Convert</b>
-            </div>
           </div>
           <div className={styles.heroIntro}>
             <p>
@@ -309,6 +298,7 @@ export default function Home() {
           </div>
         </section>
 
+        <a href="#work" className="visually-hidden">Skip services section</a>
         <section id="services" className={styles.servicesSection} data-services-section>
           <div className={styles.servicesStickyFrame}>
             <div className={styles.servicesMedia}>
@@ -327,6 +317,18 @@ export default function Home() {
                 <i />
               </div>
             </div>
+            <nav className={styles.serviceNav} aria-label="Service panels">
+              {services.map((service, index) => (
+                <button
+                  type="button"
+                  className={styles.serviceNavDot}
+                  data-service-nav-dot
+                  data-service-index={index}
+                  key={service.title}
+                  aria-label={`${service.title}`}
+                />
+              ))}
+            </nav>
             <div className={styles.serviceStack} data-service-shell>
               <div className={styles.serviceRail} data-service-rail>
                 {services.map((service) => (
@@ -354,6 +356,7 @@ export default function Home() {
 
         <WorkShowcase />
 
+        <a href="#pricing" className="visually-hidden">Skip testimonials section</a>
         <TestimonialStack />
 
         <section id="pricing" className={styles.pricingSection}>
@@ -402,6 +405,16 @@ export default function Home() {
 
         <FooterSection />
       </main>
+      <button
+        type="button"
+        className={styles.backToTop}
+        data-back-to-top
+        aria-label="Back to top"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+          <path d="M12 4l-8 8h5v8h6v-8h5z" fill="currentColor" />
+        </svg>
+      </button>
       <ScrollChoreography />
     </div>
   );

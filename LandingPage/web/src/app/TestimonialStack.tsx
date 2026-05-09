@@ -51,6 +51,18 @@ export function TestimonialStack() {
                 <i />
               </div>
             </div>
+            <nav className={styles.testimonialNav} aria-label="Testimonial cards">
+              {testimonials.map((testimonial, index) => (
+                <button
+                  type="button"
+                  className={styles.testimonialNavDot}
+                  data-testimonial-nav-dot
+                  data-testimonial-index={index}
+                  key={testimonial.name}
+                  aria-label={`${testimonial.name}, ${testimonial.role}`}
+                />
+              ))}
+            </nav>
           </div>
 
           <div className={styles.testimonialDeck} aria-label="Partner stories">

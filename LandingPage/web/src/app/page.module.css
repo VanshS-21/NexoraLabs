@@ -93,11 +93,19 @@
 }
 
 .navCta {
-  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 26px;
+  border: 1px solid oklch(20% 0.02 var(--hue-brand) / 0.16);
   border-radius: var(--radius-full);
-  color: var(--color-text-inverse) !important;
+  font-size: 0.92rem;
+  font-weight: var(--weight-heading);
+  letter-spacing: 0.01em;
+  color: var(--color-text-inverse);
   background: var(--color-primary);
-  box-shadow: 4px 4px 0 oklch(28% 0.02 var(--hue-brand) / 0.14);
+  box-shadow: 5px 5px 0 oklch(28% 0.02 var(--hue-brand) / 0.12);
 }
 
 .sideTab {
@@ -1255,7 +1263,7 @@
 .featuredPricing {
   color: var(--color-text-inverse);
   background:
-    radial-gradient(circle at 88% 17%, oklch(79% 0.2 49 / 0.42), transparent 11rem),
+    radial-gradient(circle at 88% 17%, oklch(66% 0.18 49 / 0.28), transparent 11rem),
     var(--color-primary);
   --price-rotate: 1.5deg;
 }
@@ -1791,15 +1799,15 @@
 
   .serviceRail {
     gap: 14px;
-    transform: none !important;
+    transform: none;
   }
 
   .servicePanel {
     grid-template-columns: 1fr;
     min-height: auto;
     padding: 26px;
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 1;
+    transform: none;
   }
 
   .serviceNumber {
@@ -1857,8 +1865,8 @@
 
   .workProject {
     width: 100%;
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 1;
+    transform: none;
   }
 
   .workProjectField {
@@ -2128,7 +2136,6 @@
   border-bottom: 2px solid oklch(25% 0.02 var(--hue-brand) / 0.1);
 }
 
-.navCta,
 .primaryAction,
 .workHeader a,
 .pricingCard a {
@@ -2313,7 +2320,7 @@
 }
 
 .heroTrustList {
-  display: flex !important;
+  display: flex;
 }
 
 .heroTrustList li {
@@ -2659,7 +2666,7 @@
 
   .heroTrustList,
   .heroIntro > span {
-    display: flex !important;
+    display: flex;
   }
 }
 
@@ -2693,14 +2700,6 @@
     --mobile-art-rotate: 3deg;
   }
 
-  .heroArtifactFitness {
-    display: none;
-  }
-
-  .heroSticker,
-  .heroStamp {
-    display: none;
-  }
 
   .heroTitle {
     max-width: none;
@@ -2737,7 +2736,7 @@
     width: 100%;
     min-height: 0;
     margin-bottom: 0;
-    transform: rotate(var(--mobile-process-rotate, -1deg)) !important;
+    transform: rotate(var(--mobile-process-rotate, -1deg));
   }
 
   .processCard:nth-child(even) {
@@ -2814,7 +2813,7 @@
 
   .heroTrustList,
   .heroIntro > span {
-    display: none !important;
+    display: none;
   }
 
   .heroArtifactBistro {
@@ -3256,6 +3255,128 @@
   animation: copySuccessPop 420ms var(--ease-out-quart) both;
 }
 
+/* Navigation dots for choreographed sections */
+.serviceNav,
+.testimonialNav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.serviceNav {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.testimonialNav {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.serviceNavDot,
+.testimonialNavDot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1.5px solid oklch(20% 0.02 var(--hue-brand) / 0.2);
+  border-radius: 50%;
+  background: oklch(99% 0.01 70);
+  cursor: pointer;
+  transition:
+    background-color 220ms var(--ease-out),
+    transform 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out);
+}
+
+.serviceNavDot:hover,
+.testimonialNavDot:hover {
+  transform: scale(1.2);
+}
+
+.serviceNavDot[data-dot-state="active"],
+.testimonialNavDot[data-dot-state="active"] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px oklch(56% 0.2 var(--hue-brand) / 0.18);
+  transform: scale(1.15);
+}
+
+.serviceNavDot[data-dot-state="passed"],
+.testimonialNavDot[data-dot-state="passed"] {
+  background: var(--color-lime);
+  border-color: var(--color-lime);
+}
+
+.testimonialNavDot {
+  border-color: oklch(20% 0.02 var(--hue-brand) / 0.14);
+}
+
+.testimonialNavDot[data-dot-state="active"] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Back to top */
+.backToTop {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 38;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1.5px solid oklch(20% 0.02 var(--hue-brand) / 0.14);
+  border-radius: 50%;
+  background: oklch(99% 0.01 70 / 0.92);
+  color: var(--color-ink);
+  box-shadow: 4px 4px 0 oklch(20% 0.02 var(--hue-brand) / 0.1);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 280ms var(--ease-out),
+    transform 280ms var(--ease-out),
+    background-color 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out);
+}
+
+.backToTop[data-visible="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.backToTop:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  box-shadow: 6px 6px 0 oklch(20% 0.02 var(--hue-brand) / 0.14);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 759px) {
+  .serviceNav {
+    bottom: 14px;
+  }
+
+  .backToTop {
+    right: 14px;
+    bottom: 86px;
+  }
+}
+
+@media (min-width: 1120px) {
+  .backToTop {
+    bottom: 110px;
+  }
+}
+
 .copyEmailButton[data-copy-state="failed"] {
   background: var(--color-rose);
 }
@@ -3272,23 +3393,7 @@
   }
 }
 
-@media (hover: hover) {
-  .heroLaunchNote {
-    transition:
-      transform 320ms var(--ease-out),
-      box-shadow 320ms var(--ease-out);
-  }
-
-  .heroSection:hover .heroLaunchNote {
-    box-shadow: 11px 12px 0 oklch(20% 0.02 var(--hue-brand) / 0.16);
-    transform: rotate(2deg) translateY(-3px);
-  }
-}
-
 @media (max-width: 759px) {
-  .heroLaunchNote {
-    display: none;
-  }
 
   .pricingBadge {
     margin: -10px 0 -4px;
@@ -3307,10 +3412,7 @@
 
 .heroTitle span,
 .heroIntro,
-.heroArtifact,
-.heroSticker,
-.heroStamp,
-.heroLaunchNote {
+.heroArtifact {
   opacity: 0;
   animation: studioRiseIn 720ms var(--ease-out) both;
   will-change: opacity, translate, scale, filter;
@@ -3338,22 +3440,6 @@
 
 .heroArtifactClinic {
   animation-delay: 620ms;
-}
-
-.heroArtifactFitness {
-  animation-delay: 700ms;
-}
-
-.heroSticker {
-  animation-delay: 780ms;
-}
-
-.heroStamp {
-  animation-delay: 860ms;
-}
-
-.heroLaunchNote {
-  animation-delay: 930ms;
 }
 
 .wrapper[data-motion-ready="true"] [data-reveal] {
@@ -3532,9 +3618,6 @@
   .heroTitle span,
   .heroIntro,
   .heroArtifact,
-  .heroSticker,
-  .heroStamp,
-  .heroLaunchNote,
   .copyEmailButton[data-copy-state="copied"],
   .wrapper [data-reveal],
   .faqList details[open] p,
@@ -3545,9 +3628,6 @@
   .heroTitle span,
   .heroIntro,
   .heroArtifact,
-  .heroSticker,
-  .heroStamp,
-  .heroLaunchNote,
   .wrapper [data-reveal],
   .wrapper[data-motion-ready="true"] [data-reveal] {
     opacity: 1 !important;
@@ -3604,7 +3684,6 @@
 .navLinks,
 .primaryAction,
 .secondaryAction,
-.navCta,
 .workHeader a,
 .pricingCard a,
 .footerSocials a,
@@ -3834,7 +3913,7 @@
   bottom: 7px;
 }
 
-.navLinks a {
+.navLinks a:not(.navCta) {
   justify-content: center;
   min-width: 44px;
   padding-inline: 4px;
@@ -3910,8 +3989,8 @@
     grid-column: 1 / -1;
     width: min(100%, 660px);
     margin: 0 auto;
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 1;
+    transform: none;
   }
 
   .workProjectImage {
@@ -4166,7 +4245,8 @@
   .faqList details,
   .testimonialCard,
   .workProjectMeta,
-  .copyEmailButton {
+  .copyEmailButton,
+  .backToTop {
     background: Canvas;
     color: CanvasText;
     box-shadow: none;
@@ -4179,6 +4259,9 @@
   .pricingCard a,
   .footerSocials a,
   .copyEmailButton,
+  .backToTop,
+  .serviceNavDot,
+  .testimonialNavDot,
   .stateActions a,
   .stateActions button {
     border: 1px solid ButtonText;

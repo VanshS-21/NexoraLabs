@@ -194,11 +194,23 @@ export function ScrollChoreography() {
       const serviceShell = servicesSection?.querySelector<HTMLElement>("[data-service-shell]");
       const serviceRail = servicesSection?.querySelector<HTMLElement>("[data-service-rail]");
       const servicePanels = getAll<HTMLElement>(servicesSection, "[data-service-panel]");
+      const serviceNavDots = getAll<HTMLButtonElement>(servicesSection, "[data-service-nav-dot]");
       if (servicesSection && serviceShell && serviceRail && servicePanels.length) {
         const sectionOffsetTop = getPageTop(servicesSection);
         const sectionOffsetHeight = servicesSection.offsetHeight;
         const railScrollHeight = serviceRail.scrollHeight;
         const shellClientHeight = serviceShell.clientHeight;
+
+        // Click handlers for service nav dots
+        serviceNavDots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            const targetIndex = Number(dot.dataset.serviceIndex ?? 0);
+            const scrollRange = Math.max(1, sectionOffsetHeight - viewportHeight);
+            const targetProgress = targetIndex / Math.max(1, servicePanels.length - 1);
+            const targetScrollY = sectionOffsetTop + targetProgress * scrollRange;
+            window.scrollTo({ top: targetScrollY, behavior: "smooth" });
+          });
+        });
 
         newUpdaters.push(() => {
           if (reduceMotion.matches || window.innerWidth < 760) {
@@ -208,6 +220,7 @@ export function ScrollChoreography() {
               panel.style.setProperty("--service-panel-opacity", "1");
               panel.style.setProperty("--service-panel-scale", "1");
             });
+            serviceNavDots.forEach((dot) => { dot.dataset.dotState = "active"; });
             return;
           }
           const scrollY = window.scrollY;
@@ -224,6 +237,10 @@ export function ScrollChoreography() {
             const scale = 1 - clamp(distance * 0.035, 0, 0.07);
             panel.style.setProperty("--service-panel-opacity", opacity.toFixed(3));
             panel.style.setProperty("--service-panel-scale", scale.toFixed(3));
+          });
+          serviceNavDots.forEach((dot, index) => {
+            const roundedActive = Math.round(activeIndex);
+            dot.dataset.dotState = index === roundedActive ? "active" : index < roundedActive ? "passed" : "upcoming";
           });
         });
       }
@@ -280,9 +297,21 @@ export function ScrollChoreography() {
       // Testimonial Section
       const testimonialSection = document.querySelector<HTMLElement>("[data-testimonial-section]");
       const testimonialCards = getAll<HTMLElement>(testimonialSection, "[data-testimonial-card]");
+      const testimonialNavDots = getAll<HTMLButtonElement>(testimonialSection, "[data-testimonial-nav-dot]");
       if (testimonialSection && testimonialCards.length) {
         const sectionOffsetTop = getPageTop(testimonialSection);
         const sectionOffsetHeight = testimonialSection.offsetHeight;
+
+        // Click handlers for testimonial nav dots
+        testimonialNavDots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            const targetIndex = Number(dot.dataset.testimonialIndex ?? 0);
+            const scrollRange = Math.max(1, sectionOffsetHeight - viewportHeight);
+            const targetProgress = targetIndex / Math.max(1, testimonialCards.length - 1);
+            const targetScrollY = sectionOffsetTop + targetProgress * scrollRange;
+            window.scrollTo({ top: targetScrollY, behavior: "smooth" });
+          });
+        });
 
         newUpdaters.push(() => {
           const scrollY = window.scrollY;
@@ -313,6 +342,23 @@ export function ScrollChoreography() {
             card.style.setProperty("--testimonial-content-opacity", contentOpacity.toFixed(3));
             card.style.setProperty("--testimonial-z", String(z));
           });
+          testimonialNavDots.forEach((dot, index) => {
+            const roundedActive = Math.round(active);
+            dot.dataset.dotState = index === roundedActive ? "active" : index < roundedActive ? "passed" : "upcoming";
+          });
+        });
+      }
+
+      // Back to top button
+      const backToTop = document.querySelector<HTMLButtonElement>("[data-back-to-top]");
+      if (backToTop) {
+        backToTop.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        newUpdaters.push(() => {
+          const show = window.scrollY > viewportHeight * 1.2;
+          backToTop.dataset.visible = show ? "true" : "false";
         });
       }
 

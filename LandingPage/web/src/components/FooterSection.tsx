@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CopyEmailButton } from "@/components/CopyEmailButton";
+import { ContactForm } from "@/components/ContactForm";
 import styles from "@/styles/page.module.css";
 
 const footerLinks = [
@@ -25,11 +25,15 @@ export function FooterSection() {
           <span aria-hidden="true" />
           Booking market-fit website builds for 2026
         </div>
-        <a className={styles.footerEmail} href="mailto:hello@nexoralabs.com" data-reveal>
-          <span>hello@</span>
-          <span>nexoralabs.com</span>
-        </a>
-        <CopyEmailButton />
+        <div className={styles.contactFormCard} data-reveal>
+          <div className={styles.contactFormHeader}>
+            <h2 className={styles.contactFormHeading}>Start a project</h2>
+            <p className={styles.contactFormLead}>
+              Tell us about your business and we&apos;ll get back within a day.
+            </p>
+          </div>
+          <ContactForm />
+        </div>
         <nav className={styles.footerSocials} aria-label="Footer links" data-reveal>
           {footerLinks.map((link) => (
             <a href={link.href} key={link.label}>

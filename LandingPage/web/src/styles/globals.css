@@ -13,6 +13,10 @@
   --color-rose: oklch(76% 0.16 350);
   --color-yellow: oklch(90% 0.12 88);
   --color-ink: oklch(19% 0.025 var(--hue-brand));
+  --color-warm-dark: oklch(28% 0.02 var(--hue-brand));
+  --color-warm-darker: oklch(20% 0.02 var(--hue-brand));
+  --color-surface-tinted: oklch(94% 0.035 82);
+  --color-surface-pale: oklch(99% 0.006 var(--hue-brand));
   
   /* Text */
   --color-text: oklch(25% 0.02 var(--hue-brand));

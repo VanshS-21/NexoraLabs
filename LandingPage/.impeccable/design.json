@@ -1,125 +1,268 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-05-08T12:00:00Z",
+  "generatedAt": "2026-05-09T18:00:00Z",
   "title": "Design System: Nexora Labs",
   "extensions": {
     "colorMeta": {
       "primary": {
         "role": "primary",
         "displayName": "Nexora Orange",
-        "canonical": "oklch(65% 0.22 45)",
+        "canonical": "oklch(56% 0.20 45)",
         "tonalRamp": [
-          "oklch(20% 0.1 45)",
-          "oklch(35% 0.15 45)",
-          "oklch(50% 0.2 45)",
-          "oklch(65% 0.22 45)",
-          "oklch(75% 0.18 45)",
-          "oklch(85% 0.12 45)",
-          "oklch(92% 0.08 45)",
-          "oklch(97% 0.04 45)"
+          "oklch(19% 0.025 45)",
+          "oklch(32% 0.15 45)",
+          "oklch(44% 0.18 45)",
+          "oklch(56% 0.20 45)",
+          "oklch(66% 0.18 45)",
+          "oklch(76% 0.14 45)",
+          "oklch(86% 0.09 45)",
+          "oklch(94% 0.04 45)"
         ]
       },
       "neutral-bg": {
         "role": "neutral",
-        "displayName": "Warm Cream",
-        "canonical": "oklch(97% 0.015 45)",
+        "displayName": "Warm Paper Canvas",
+        "canonical": "oklch(96% 0.03 75)",
         "tonalRamp": [
-          "oklch(15% 0.005 45)",
-          "oklch(30% 0.01 45)",
-          "oklch(45% 0.01 45)",
-          "oklch(60% 0.01 45)",
-          "oklch(75% 0.015 45)",
-          "oklch(85% 0.015 45)",
-          "oklch(92% 0.015 45)",
-          "oklch(97% 0.015 45)"
+          "oklch(19% 0.025 45)",
+          "oklch(25% 0.02 45)",
+          "oklch(40% 0.018 45)",
+          "oklch(50% 0.02 45)",
+          "oklch(70% 0.028 60)",
+          "oklch(82% 0.03 68)",
+          "oklch(94% 0.035 82)",
+          "oklch(99% 0.01 70)"
         ]
+      },
+      "lime": {
+        "role": "secondary",
+        "displayName": "Studio Lime",
+        "canonical": "oklch(82% 0.18 132)"
+      },
+      "sky": {
+        "role": "secondary",
+        "displayName": "Open Sky",
+        "canonical": "oklch(80% 0.11 214)"
+      },
+      "rose": {
+        "role": "secondary",
+        "displayName": "Proof Rose",
+        "canonical": "oklch(76% 0.16 350)"
+      },
+      "yellow": {
+        "role": "secondary",
+        "displayName": "Warm Yellow",
+        "canonical": "oklch(90% 0.12 88)"
+      },
+      "warm-dark": {
+        "role": "structural",
+        "displayName": "Warm Dark",
+        "canonical": "oklch(28% 0.02 45)",
+        "usage": "Borders, grid lines, shadow color base. Never used for text."
+      },
+      "warm-darker": {
+        "role": "structural",
+        "displayName": "Warm Darker",
+        "canonical": "oklch(20% 0.02 45)",
+        "usage": "Emphasis borders, sticker shadows, interactive outlines."
+      },
+      "surface-pale": {
+        "role": "neutral",
+        "displayName": "Pale Ivory Surface",
+        "canonical": "oklch(99% 0.006 45)",
+        "usage": "Pill backgrounds, icon wells, progress tracks, FAQ items, side-tab panels."
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Massive hero headlines only."
+        "purpose": "Hero brand statements only. Never outside the first viewport."
       },
       "headline": {
         "displayName": "Headline",
         "purpose": "Primary section titles."
+      },
+      "panel": {
+        "displayName": "Panel Headline",
+        "purpose": "Inside service panels and showcase moments."
+      },
+      "title": {
+        "displayName": "Card Title",
+        "purpose": "Compact titles on process cards, work meta, pricing names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Primary reading text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Kickers, stickers, badges, nav dots, section markers."
       }
     },
     "shadows": [
       {
-        "name": "tactile-lift",
-        "value": "0 8px 24px oklch(0% 0 0 / 0.08)",
-        "purpose": "Applied to interactive elements on hover."
+        "name": "sticker-shadow-sm",
+        "value": "3px 3px 0 oklch(20% 0.02 45 / 0.12)",
+        "purpose": "Small decorative elements: nav dots, badges, small stickers."
       },
       {
-        "name": "sticker-shadow",
-        "value": "4px 4px 0px oklch(0% 0 0 / 0.1)",
-        "purpose": "Signature offset shadow for decorative graphics."
+        "name": "sticker-shadow-md",
+        "value": "5px 5px 0 oklch(20% 0.02 45 / 0.12)",
+        "purpose": "Default decorative shadow for buttons and pills."
+      },
+      {
+        "name": "sticker-shadow-lg",
+        "value": "9px 9px 0 oklch(20% 0.02 45 / 0.1)",
+        "purpose": "Medium cards and panels."
+      },
+      {
+        "name": "sticker-shadow-xl",
+        "value": "12px 12px 0 oklch(20% 0.02 45 / 0.14)",
+        "purpose": "Large cards and project images."
+      },
+      {
+        "name": "sticker-shadow-2xl",
+        "value": "14px 14px 0 oklch(20% 0.02 45 / 0.14)",
+        "purpose": "Testimonial cards and service stack panel."
+      },
+      {
+        "name": "ambient-lift",
+        "value": "0 8px 24px oklch(28% 0.02 45 / 0.08)",
+        "purpose": "Soft blurred shadow for hover states on interactive elements."
+      },
+      {
+        "name": "deep-stack",
+        "value": "0 24px 54px oklch(22% 0.02 45 / 0.18), 8px 8px 0 oklch(28% 0.02 45 / 0.1)",
+        "purpose": "Combined ambient and sticker shadow for thick substantial objects."
       }
     ],
     "motion": [
       {
+        "name": "ease-out",
+        "value": "cubic-bezier(0, 0, 0.38, 1)",
+        "purpose": "Standard easing for hover transitions (220ms)."
+      },
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Scroll-driven choreography and reveal animations (560ms)."
+      },
+      {
         "name": "ease-out-quint",
         "value": "cubic-bezier(0.23, 1, 0.32, 1)",
-        "purpose": "Standard easing for buttery smooth transitions."
+        "purpose": "Studio entrance animations (520ms-720ms)."
       }
     ]
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Primary CTA",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "The main call to action. Energetic and pill-shaped.",
-      "html": "<button class=\"ds-btn-primary\">Get Started</button>",
-      "css": ".ds-btn-primary { background-color: #E9552E; color: #FFFFFF; padding: 14px 28px; border-radius: 9999px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; border: none; font-size: 1rem; cursor: pointer; transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.2s; } .ds-btn-primary:hover { transform: translateY(-2px); background-color: #D14421; box-shadow: 0 8px 24px oklch(0% 0 0 / 0.08); }"
+      "refersTo": "primaryAction",
+      "description": "The main call to action. Pill-shaped, orange, sticker shadow.",
+      "html": "<a class=\"primaryAction\" href=\"#contact\">Get Started</a>",
+      "css": ".primaryAction { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 9999px; background: oklch(56% 0.20 45); color: oklch(98% 0.01 45); font-size: 0.86rem; font-weight: 600; border: 1px solid oklch(20% 0.02 45 / 0.16); box-shadow: 5px 5px 0 oklch(20% 0.02 45 / 0.12); transition: transform 220ms cubic-bezier(0, 0, 0.38, 1), background-color 220ms; } .primaryAction:hover { transform: translateY(-2px); background: oklch(52% 0.18 45); } .primaryAction:active { translate: 0 1px; scale: 0.985; }"
     },
     {
       "name": "Process Card",
       "kind": "card",
-      "refersTo": "card-process",
-      "description": "Standard container for multi-step processes.",
-      "html": "<div class=\"ds-card-process\"><h3>1. Discovery</h3><p>A 30-min call to understand your business goals and competitive landscape.</p></div>",
-      "css": ".ds-card-process { background-color: #FFFBF7; border: 1px solid rgba(0,0,0,0.05); border-radius: 16px; padding: 32px; font-family: 'Plus Jakarta Sans', sans-serif; transition: transform 0.2s, box-shadow 0.2s; } .ds-card-process:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.03); } .ds-card-process h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: #443E38; } .ds-card-process p { font-size: 1rem; line-height: 1.6; color: #7A726A; margin: 0; }"
+      "refersTo": "processCard",
+      "description": "Stacked card for multi-step process. Scroll-driven stack-to-spread choreography.",
+      "html": "<article class=\"processCard\" data-process-card><div class=\"processIcon\"><svg/></div><h3>Discovery</h3><p>A 30-min call to understand your business goals.</p></article>",
+      "css": ".processCard { width: min(82%, 720px); min-height: 260px; border: 2px solid oklch(20% 0.02 45 / 0.14); border-radius: 8px; background: oklch(98% 0.028 94); box-shadow: 12px 12px 0 oklch(20% 0.02 45 / 0.16); } .processCard:nth-child(even) { background: oklch(95% 0.08 210); } .processCard:nth-child(3) { background: oklch(96% 0.07 350); } .processCard:nth-child(4) { background: oklch(94% 0.08 88); }"
     },
     {
-      "name": "Featured Pricing Card",
+      "name": "Testimonial Card",
       "kind": "card",
-      "description": "Highlighted pricing plan with brand border and badge.",
-      "html": "<div class=\"ds-pricing-featured\"><div class=\"ds-badge\">Most Popular</div><h3>Growth</h3><div class=\"ds-price\">₹85,000</div><p>For established businesses.</p></div>",
-      "css": ".ds-pricing-featured { background: white; border: 2px solid #E9552E; border-radius: 24px; padding: 48px; position: relative; font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 20px 40px rgba(233, 85, 46, 0.1); } .ds-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #E9552E; color: white; padding: 8px 24px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; } .ds-pricing-featured h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #443E38; } .ds-price { font-size: 3.5rem; font-weight: 800; color: #E9552E; margin-bottom: 16px; line-height: 1; } .ds-pricing-featured p { color: #7A726A; margin: 0; }"
+      "refersTo": "testimonialCard",
+      "description": "Stacked proof card with scroll-driven deck choreography.",
+      "html": "<article class=\"testimonialCard\" data-testimonial-card><div class=\"testimonialCopy\"><span>01</span><h3>Akhil Lodha</h3><strong>Made the offer easier to choose</strong><p>They dug into what clients ask before they call.</p><small>Financial advisor</small></div><div class=\"testimonialSticker\"><b>Proof</b><span>first</span></div></article>",
+      "css": ".testimonialCard { border: 2px solid oklch(20% 0.02 45 / 0.14); border-radius: 16px; box-shadow: 14px 14px 0 oklch(20% 0.02 45 / 0.14); } .testimonialCard.testimonialWarm { background: oklch(98% 0.028 94); } .testimonialCard.testimonialRose { background: oklch(96% 0.06 350); } .testimonialCard.testimonialMint { background: oklch(96% 0.055 210); }"
+    },
+    {
+      "name": "Pricing Card",
+      "kind": "card",
+      "refersTo": "pricingCard",
+      "description": "Pinned-proposal pricing card with slight rotation and decorative circle.",
+      "html": "<article class=\"pricingCard\"><div class=\"pricingBadge\">Most Popular</div><h3>Growth</h3><strong>₹85,000</strong><p>For established businesses.</p><ul><li>Custom design</li><li>Launch support</li></ul><a href=\"#contact\">Get Started</a></article>",
+      "css": ".pricingCard { border: 2px solid oklch(20% 0.02 45 / 0.12); border-radius: 8px; background: oklch(99% 0.012 75); box-shadow: 12px 12px 0 oklch(20% 0.02 45 / 0.14); } .featuredPricing { background: oklch(56% 0.20 45); color: oklch(98% 0.01 45); } .pricingBadge { background: oklch(90% 0.12 88); border-radius: 9999px; box-shadow: 4px 4px 0 oklch(20% 0.02 45 / 0.13); transform: rotate(-3deg); }"
+    },
+    {
+      "name": "FAQ Accordion",
+      "kind": "accordion",
+      "refersTo": "faqList",
+      "description": "Details-based accordion with sticker shadow and orange border on open.",
+      "html": "<div class=\"faqList\"><details><summary>How long does a build take?</summary><p>Most market-fit sites ship within 3-4 weeks.</p></details></div>",
+      "css": ".faqList details { border: 2px solid oklch(20% 0.02 45 / 0.1); border-radius: 8px; background: oklch(99% 0.01 70); box-shadow: 6px 6px 0 oklch(20% 0.02 45 / 0.08); } .faqList details[open] { border-color: oklch(56% 0.20 45); box-shadow: 9px 9px 0 oklch(20% 0.02 45 / 0.1); }"
+    },
+    {
+      "name": "Copy Email Button",
+      "kind": "button",
+      "refersTo": "copyEmailButton",
+      "description": "Pill-shaped clipboard button with state feedback (idle, copying, copied, failed).",
+      "html": "<button class=\"copyEmailButton\" data-copy-state=\"idle\"><span>Copy email</span><small>Copy email</small></button>",
+      "css": ".copyEmailButton { min-height: 42px; padding: 0 18px; border-radius: 9999px; background: oklch(99% 0.01 70 / 0.9); color: oklch(15% 0.018 45); font-size: 0.78rem; font-weight: 800; border: 1px solid oklch(20% 0.02 45 / 0.15); box-shadow: 4px 5px 0 oklch(20% 0.02 45 / 0.1); } .copyEmailButton[data-copy-state=\"copied\"] { background: oklch(82% 0.18 132); } .copyEmailButton[data-copy-state=\"failed\"] { background: oklch(76% 0.16 350); }"
+    },
+    {
+      "name": "Launch Map",
+      "kind": "navigation",
+      "refersTo": "launchMap",
+      "description": "Desktop-only fixed route tracker at page bottom. Five stops with progress rail.",
+      "html": "<nav class=\"launchMap\" data-launch-map><div class=\"launchMapHeader\"><span>Route</span><b>Your website story</b></div><ol class=\"launchMapStops\"><li class=\"launchMapStop\" data-launch-stop><span>01</span><b>About</b><small>Who for</small></li></ol></nav>",
+      "css": ".launchMap { border: 2px solid oklch(20% 0.02 45 / 0.14); border-radius: 12px; background: repeating-linear-gradient(-6deg, oklch(99% 0.012 76) 0 11px, oklch(96% 0.035 88) 11px 12px); box-shadow: 0 16px 34px oklch(20% 0.02 45 / 0.13), 9px 9px 0 oklch(20% 0.02 45 / 0.12); transform: translateX(-50%) rotate(-0.7deg); }"
     }
   ],
   "narrative": {
-    "northStar": "The Vibrant Artisan",
-    "overview": "Nexora Labs embraces an aesthetic philosophy of simplicity, speed, and creativity, aiming to make even the most ordinary projects visually compelling. Their work is defined by clean, modern design choices that feel fresh and approachable. By balancing quick delivery with high-quality craftsmanship, they ensure clients get designs that are both efficient and impactful.",
+    "northStar": "The Playful Studio Table",
+    "overview": "Nexora Labs should feel like a small expert team that turns real-world trust into a clear digital buyer path. The system is warm, tactile, clear, custom, and more visibly playful than a typical agency site. It should feel like a studio table covered with useful tools, marked-up proofs, launch notes, and confident little stickers.",
     "keyCharacteristics": [
-      "Warm & Inviting palette",
-      "Punchy & Playful orange accents",
-      "Tactile Hierarchy via physical-feeling elements",
-      "Typographic Authority with bold geometric sans"
+      "Warm and inviting palette with committed orange",
+      "Punchy and playful accent colors as spatial actors",
+      "Tactile hierarchy via solid offset shadows and stacked objects",
+      "Typographic authority with bold geometric sans",
+      "Scroll-driven choreography that proves craft",
+      "Studio-table layout rhythm, not generic section stacking"
     ],
     "rules": [
       {
         "name": "The 10% Pop Rule",
-        "body": "The primary orange is a high-chroma tool meant for impact. Use it on ≤10% of the interface.",
+        "body": "The primary orange is a high-chroma tool meant for impact. Use it on no more than 10% of the interface surface.",
         "section": "colors"
       },
       {
-        "name": "Flat at Rest Rule",
-        "body": "Surfaces are clean and flat by default. Depth is conveyed through bold tonal layering.",
+        "name": "The Flat-at-Rest Rule",
+        "body": "Surfaces are clean and flat by default. Shadows appear only as a response to state or as a deliberate sticker-shadow decorative choice.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Tracking Rule",
+        "body": "Letter spacing remains 0 for all headings and body text. Tracking is reserved exclusively for short uppercase labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sticker-Shadow Only Rule",
+        "body": "The only decorative shadow vocabulary is the hard-edged offset shadow (no blur). Blurred shadows are reserved for ambient lift on interactive hover states.",
         "section": "elevation"
       }
     ],
     "dos": [
       "Do use OKLCH for all color declarations.",
+      "Do keep the palette warm, tinted, and brand-specific. Every neutral is hue-shifted toward 45.",
+      "Do make orange a committed brand signal, not a tiny accent.",
+      "Do use large type with real confidence. The display clamp reaches 8.2rem.",
+      "Do use the sticker-shadow pattern (solid offset, no blur) for decorative depth.",
       "Do wrap body text at 65ch for legibility.",
-      "Do use the 'Sticker Shadow' for decorative graphics."
+      "Do preserve reduced-motion support for all scroll choreography and entrance animations."
     ],
     "donts": [
-      "Don't use generic 'AI SLOP' generated assets.",
+      "Don't use pure #000 or #fff. Every neutral is tinted toward the brand hue.",
+      "Don't use gradient text (background-clip: text with a gradient).",
+      "Don't use decorative glassmorphism (blurs and glass cards as default).",
+      "Don't use side-stripe borders (border-left or border-right greater than 1px as a colored accent).",
+      "Don't repeat identical icon-card grids as the main structure.",
+      "Don't make the site look like a generic SaaS landing page.",
       "Don't use standard SaaS blue or cold greys.",
-      "Don't use glassmorphism or overly blurred shadows."
+      "Don't use generic AI-generated assets."
     ]
   }
 }

@@ -1392,9 +1392,13 @@
   place-items: center;
   padding: 120px 24px;
   text-align: center;
-  background:
-    url("/footer-sunrise.png") center bottom / cover no-repeat,
-    oklch(70% 0.06 165);
+  background: oklch(70% 0.06 165);
+}
+
+.footerBackground {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center bottom;
 }
 
 .footerOverlay {

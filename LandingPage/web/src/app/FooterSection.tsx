@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CopyEmailButton } from "./CopyEmailButton";
 import styles from "./page.module.css";
 
@@ -11,6 +12,13 @@ const footerLinks = [
 export function FooterSection() {
   return (
     <footer id="contact" className={styles.contactSection}>
+      <Image
+        src="/footer-sunrise.png"
+        alt=""
+        fill
+        sizes="100vw"
+        className={styles.footerBackground}
+      />
       <div className={styles.footerOverlay} aria-hidden="true" />
       <div className={styles.footerContent}>
         <div className={styles.footerAvailability} data-reveal>

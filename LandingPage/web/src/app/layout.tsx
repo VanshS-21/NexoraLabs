@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Onest } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 
 const displayFont = Bricolage_Grotesque({
   subsets: ["latin"],

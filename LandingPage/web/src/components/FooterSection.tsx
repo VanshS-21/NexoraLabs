@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { CopyEmailButton } from "./CopyEmailButton";
-import styles from "./page.module.css";
+import { CopyEmailButton } from "@/components/CopyEmailButton";
+import styles from "@/styles/page.module.css";
 
 const footerLinks = [
   { label: "Work", href: "#work" },

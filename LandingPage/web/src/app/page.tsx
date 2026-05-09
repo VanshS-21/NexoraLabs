@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { FooterSection } from "./FooterSection";
-import { IntroGreeting } from "./IntroGreeting";
-import { ScrollChoreography } from "./ScrollChoreography";
-import { TestimonialStack } from "./TestimonialStack";
-import { WorkShowcase } from "./WorkShowcase";
-import styles from "./page.module.css";
+import { Target, Sparkles, Wand, BarChart3 } from "lucide-react";
+import { FooterSection } from "@/components/FooterSection";
+import { IntroGreeting } from "@/components/IntroGreeting";
+import { ScrollChoreography } from "@/components/ScrollChoreography";
+import { TestimonialStack } from "@/components/TestimonialStack";
+import { WorkShowcase } from "@/components/WorkShowcase";
+import styles from "@/styles/page.module.css";
 
 const processSteps = [
   {
@@ -124,42 +125,16 @@ const faqs = [
   },
 ];
 
+const processIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  target: Target,
+  spark: Sparkles,
+  wand: Wand,
+  chart: BarChart3,
+};
+
 function ProcessGlyph({ type }: { type: string }) {
-  if (type === "spark") {
-    return (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M35 6l5 17 17 5-17 6-5 24-7-24-21-6 21-5z" />
-      </svg>
-    );
-  }
-
-  if (type === "wand") {
-    return (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M15 49l27-27 7 7-27 27z" />
-        <path d="M46 8l2 8 8 2-8 2-2 8-3-8-7-2 7-2z" />
-      </svg>
-    );
-  }
-
-  if (type === "chart") {
-    return (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M13 50h38" />
-        <path d="M18 44V29" />
-        <path d="M32 44V17" />
-        <path d="M46 44V24" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <circle cx="32" cy="32" r="20" />
-      <circle cx="32" cy="32" r="8" />
-      <path d="M32 4v11M32 49v11M4 32h11M49 32h11" />
-    </svg>
-  );
+  const Icon = processIconMap[type] ?? Target;
+  return <Icon className={styles.processIconSvg} />;
 }
 
 export default function Home() {

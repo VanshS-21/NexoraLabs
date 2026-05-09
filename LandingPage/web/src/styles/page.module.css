@@ -559,9 +559,12 @@
   box-shadow: 4px 4px 0 oklch(28% 0.02 var(--hue-brand) / 0.08);
 }
 
+.processIconSvg {
+  width: 100%;
+  height: 100%;
+}
+
 .processIcon svg {
-  width: 31px;
-  height: 31px;
   fill: none;
   stroke: var(--color-primary);
   stroke-width: 4;

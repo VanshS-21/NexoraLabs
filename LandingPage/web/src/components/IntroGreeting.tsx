@@ -1,4 +1,5 @@
-import styles from "./page.module.css";
+import { LayoutGrid, Square, Search, Scan, Waves, Compass } from "lucide-react";
+import styles from "@/styles/page.module.css";
 
 const capabilityPills = [
   { label: "Offer clarity", icon: "grid", pos: "pos-0", drift: "34" },
@@ -17,55 +18,18 @@ const greetingLines = [
   "before they enquire",
 ];
 
+const capabilityIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  grid: LayoutGrid,
+  square: Square,
+  search: Search,
+  frame: Scan,
+  motion: Waves,
+  compass: Compass,
+};
+
 function CapabilityGlyph({ type }: { type: string }) {
-  if (type === "grid") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 5h6v6H5zM13 5h6v6h-6zM5 13h6v6H5zM13 13h6v6h-6z" />
-      </svg>
-    );
-  }
-
-  if (type === "square") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M6 6h12v12H6z" />
-      </svg>
-    );
-  }
-
-  if (type === "search") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="10.5" cy="10.5" r="5.5" />
-        <path d="M15 15l4 4" />
-      </svg>
-    );
-  }
-
-  if (type === "frame") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M8 4H5v3M16 4h3v3M8 20H5v-3M16 20h3v-3" />
-        <path d="M9 9h6v6H9z" />
-      </svg>
-    );
-  }
-
-  if (type === "motion") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M6 8c3-4 9 4 12 0M6 16c3 4 9-4 12 0" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 4l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" />
-      <path d="M12 8v8M8 12h8" />
-    </svg>
-  );
+  const Icon = capabilityIconMap[type] ?? Compass;
+  return <Icon />;
 }
 
 export function IntroGreeting() {

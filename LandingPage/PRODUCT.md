@@ -4,21 +4,27 @@
 brand
 
 ## Users
-Primary audience: busy local business owners who need a credible website that works, but do not want to learn web strategy, coordinate freelancers, or manage a complicated build process. They are typically 28-55, run a solo operation or small team, and value trust, referrals, clear pricing, and professional presentation.
+Primary audience: owner-led service businesses with real offline trust, but a weak, outdated, or missing web presence. They already have a clear service, paying customers, referrals, or local reputation, but their website does not explain the offer, answer buyer doubts, or turn attention into enquiries.
 
-Secondary audience: clinics, coaches, creators, premium local service brands, and early-stage founders who need a serious custom web presence without taking on the work of strategy, design, development, launch, and handover themselves.
+The strongest-fit buyers are clinics, wellness brands, coaches, consultants, salons, restaurants, local service firms, creators with service offers, and premium small businesses that need trust, clarity, booking intent, and a professional owned website. They are typically 28-55, time-poor, practical, and willing to invest when the outcome is clear.
 
-These buyers are time-poor, trust-driven, and outcome-focused. They want to look established online, convert visitors into enquiries or bookings, and feel confident that one capable team is handling the details.
+They do not want a technology education, a template they must maintain, or a pile of disconnected freelancers. They want one capable team to clarify the offer, shape the pages, design the experience, build the site, launch it, and hand it over cleanly.
+
+Poor-fit buyers include businesses with no validated offer, clients shopping only for the cheapest possible site, enterprise teams needing procurement-heavy delivery, and projects where the owner does not want to clarify their audience, proof, or services.
 
 ## Product Purpose
-Nexora Labs is a boutique full-service web agency for local businesses and emerging brands. It delivers strategy, design, and development as one end-to-end engagement, giving clients a custom-coded, responsive, conversion-aware website without templates, page-builder lock-in, or fragmented vendor management.
+Nexora Labs exists to turn local trust into a clear digital sales path. It helps owner-led service businesses translate messy notes, proof, services, prices, photos, and reputation into an owned website that makes buyers feel safe to enquire, book, or start a conversation.
 
-Success means the visitor immediately understands that Nexora can take a messy website problem and turn it into a polished, useful, owned digital presence. The brand site should make the agency feel professional enough to trust, approachable enough to contact, and creative enough to justify choosing custom work over a cheap template.
+The agency delivers positioning, page strategy, UX/UI design, custom development, launch support, analytics setup, and handover as one coherent product. The promise is not "a pretty website." The promise is a website with a job: explain the offer, prove credibility, reduce buyer friction, and create a reliable route to enquiries or bookings.
+
+Market fit is strongest when the client already has demand, referrals, expertise, or a valuable service, but their online presence makes them look smaller, less clear, or less trustworthy than they are. Nexora is the bridge between "people trust us when they meet us" and "people trust us before they contact us."
+
+Success means a visitor immediately understands who Nexora serves, why the agency exists, and why custom strategy plus custom build is worth choosing over a cheap template or fragmented vendor setup.
 
 ## Brand Personality
 Professional, credible, approachable, and hassle-free, with a clear creative spark. Nexora should feel like a calm product team with a playful studio table: the client brings scattered notes, photos, offers, and worries, and Nexora turns them into a polished web presence without making the work feel heavy.
 
-Core message: "We handle everything."
+Core message: "We turn your real-world trust into a website that brings better enquiries."
 
 The voice is direct, reassuring, practical, and visibly spirited. It should avoid inflated agency language. The brand can use playful labels, tactile marks, and surprising layout rhythm, but never at the expense of trust.
 

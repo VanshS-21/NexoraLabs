@@ -4,8 +4,8 @@ import styles from "./page.module.css";
 const workProjects = [
   {
     title: "Corner Bistro",
-    category: "Restaurant booking site",
-    proof: "Menu, table booking, and private event enquiries in one clear flow.",
+    category: "Restaurant enquiry path",
+    proof: "Menu, table booking, and private event enquiries arranged around one clear next step.",
     image: "/work-bistro.svg",
     placement: "workTopLeft",
     tone: "workSage",
@@ -14,8 +14,8 @@ const workProjects = [
   },
   {
     title: "Northside Clinic",
-    category: "Care service website",
-    proof: "Reduced patient confusion with service pages, trust cues, and contact routes.",
+    category: "Clinic trust system",
+    proof: "Reduced patient hesitation with service pages, credentials, FAQs, and direct contact routes.",
     image: "/work-clinic.svg",
     placement: "workTopRight",
     tone: "workSky",
@@ -24,8 +24,8 @@ const workProjects = [
   },
   {
     title: "Pulse Coach",
-    category: "Fitness landing page",
-    proof: "Turned a personal brand into a sharp offer page for coaching leads.",
+    category: "Coaching offer page",
+    proof: "Turned a personal brand into a focused coaching offer with a clear enquiry path.",
     image: "/work-fitness.svg",
     placement: "workBottomLeft",
     tone: "workInk",
@@ -34,8 +34,8 @@ const workProjects = [
   },
   {
     title: "Bloom Studio",
-    category: "Salon launch page",
-    proof: "Packaged services, location details, and booking intent for a premium local launch.",
+    category: "Salon booking launch",
+    proof: "Packaged services, location details, price cues, and booking intent for a premium local launch.",
     image: "/work-salon.svg",
     placement: "workBottomRight",
     tone: "workPeach",
@@ -49,10 +49,10 @@ export function WorkShowcase() {
     <section id="work" className={styles.workSection} data-work-section>
       <div className={styles.workStage} data-work-stage>
         <div className={styles.workHeader} data-work-center>
-          <p className={styles.workKicker}>Selected work</p>
-          <h2>Proof, pinned to the wall</h2>
-          <p>Every preview is built around a practical job: bookings, trust, enquiries, launch confidence, and fewer confused customers.</p>
-          <a href="#contact">Talk through your project</a>
+          <p className={styles.workKicker}>Market-fit examples</p>
+          <h2>Buyer paths, pinned to the wall</h2>
+          <p>Every preview starts with a real decision: book a table, trust a clinic, enquire about coaching, or choose a salon.</p>
+          <a href="#contact">Find your website job</a>
         </div>
 
         <div className={styles.workProjectField} aria-label="Selected website projects">

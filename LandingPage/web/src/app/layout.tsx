@@ -15,8 +15,9 @@ const bodyFont = Onest({
 });
 
 export const metadata: Metadata = {
-  title: "Nexora Labs | Full-Service Web Agency",
-  description: "We help small businesses and local brands get online with a complete web presence: strategy, design, and development, done for them fast.",
+  title: "Nexora Labs | Market-Fit Websites For Service Brands",
+  description:
+    "Nexora Labs turns local trust, proof, and service offers into custom websites that help owner-led businesses earn better enquiries and bookings.",
 };
 
 export default function RootLayout({

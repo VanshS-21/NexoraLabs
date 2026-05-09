@@ -1,6 +1,6 @@
 ---
 name: Nexora Labs
-description: A playful, tactile, conversion-minded brand system for a boutique web studio serving local businesses and emerging brands.
+description: A playful, tactile, conversion-minded brand system for a market-fit web agency serving owner-led service brands.
 colors:
   primary: "oklch(56% 0.20 45)"
   primary-hover: "oklch(52% 0.18 45)"
@@ -74,11 +74,11 @@ components:
 
 **Creative North Star: The Playful Studio Table**
 
-Nexora Labs should feel like a small expert team that brings order, craft, and momentum to businesses that have delayed their web presence for too long. The system is warm, tactile, clear, custom, and more visibly playful than a typical agency site. It should feel like a studio table covered with useful tools, marked-up proofs, launch notes, and confident little stickers.
+Nexora Labs should feel like a small expert team that turns real-world trust into a clear digital buyer path. The system is warm, tactile, clear, custom, and more visibly playful than a typical agency site. It should feel like a studio table covered with useful tools, marked-up proofs, launch notes, and confident little stickers.
 
 The site should express this through a warm paper canvas, committed orange, generous supporting color, oversized confident typography, full-bleed studio-scene sections, scroll-staged proof, tactile stacked objects, illustrated local-business mockups, and direct buying cues.
 
-The page should feel designed enough to prove taste, but practical enough that a clinic owner, coach, restaurant, boutique, or founder can imagine working with Nexora without friction.
+The page should feel designed enough to prove taste, but practical enough that a clinic owner, coach, restaurant, consultant, salon owner, or local service founder can imagine working with Nexora without friction.
 
 ## 2. Register And Scene
 

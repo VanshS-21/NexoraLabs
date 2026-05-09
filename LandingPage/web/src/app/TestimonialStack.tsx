@@ -4,27 +4,27 @@ const testimonials = [
   {
     name: "Akhil Lodha",
     role: "Financial advisor",
-    proof: "Clarified high-trust enquiries",
+    proof: "Made the offer easier to choose",
     quote:
-      "They dug into what our clients ask before they call. The new website explains our value quickly, handles trust upfront, and makes enquiries feel more prepared.",
+      "They dug into what clients ask before they call. The new site explains our value quickly, handles trust upfront, and makes enquiries feel more prepared.",
     mark: "01",
     tone: "testimonialWarm",
   },
   {
     name: "Angelique Overton",
     role: "Salon owner",
-    proof: "Turned services into bookings",
+    proof: "Turned services into a booking path",
     quote:
-      "Nexora took our scattered service list, photos, and launch notes and turned them into a site that feels polished without becoming stiff.",
+      "Nexora took our scattered service list, photos, price questions, and launch notes and turned them into a site that feels polished without becoming stiff.",
     mark: "02",
     tone: "testimonialRose",
   },
   {
     name: "Kevin Khoury",
     role: "Local studio founder",
-    proof: "Strategy, design, and launch in one flow",
+    proof: "Strategy and build in one flow",
     quote:
-      "The process was calm and clear. They handled strategy, design, and launch without making us chase five different people or translate design language.",
+      "The process was calm and clear. They handled positioning, design, and launch without making us chase five different people or translate web jargon.",
     mark: "03",
     tone: "testimonialMint",
   },
@@ -41,9 +41,9 @@ export function TestimonialStack() {
         <div className={styles.testimonialSticky}>
           <div className={styles.testimonialIntro}>
             <div className={styles.sectionKicker}>Client notes</div>
-            <h2 id="testimonials-heading">Client proof, in plain words</h2>
+            <h2 id="testimonials-heading">Proof that sounds like the buyer</h2>
             <p className={styles.sectionLead}>
-              Practical outcomes from owners who needed their site to feel sharper, clearer, and easier to trust.
+              Practical outcomes from owners who needed clearer positioning, stronger trust cues, and a better route to contact.
             </p>
             <div className={styles.testimonialProgress} aria-hidden="true">
               <span>Notes</span>

@@ -169,7 +169,7 @@
       "refersTo": "processCard",
       "description": "Stacked card for multi-step process. Scroll-driven stack-to-spread choreography.",
       "html": "<article class=\"processCard\" data-process-card><div class=\"processIcon\"><svg/></div><h3>Discovery</h3><p>A 30-min call to understand your business goals.</p></article>",
-      "css": ".processCard { width: min(82%, 720px); min-height: 260px; border: 2px solid oklch(20% 0.02 45 / 0.14); border-radius: 8px; background: oklch(98% 0.028 94); box-shadow: 12px 12px 0 oklch(20% 0.02 45 / 0.16); } .processCard:nth-child(even) { background: oklch(95% 0.08 210); } .processCard:nth-child(3) { background: oklch(96% 0.07 350); } .processCard:nth-child(4) { background: oklch(94% 0.08 88); }"
+      "css": ".processCard { width: min(82%, 720px); min-height: 260px; border: 2px solid oklch(20% 0.02 45 / 0.14); border-radius: 8px; background: oklch(98% 0.028 94); box-shadow: 12px 12px 0 oklch(20% 0.02 45 / 0.16); } .processCard:nth-child(2) { background: oklch(95% 0.08 210); } .processCard:nth-child(3) { background: oklch(96% 0.07 350); } .processCard:nth-child(4) { background: oklch(94% 0.08 88); } .processIcon { background: oklch(56% 0.20 45); color: oklch(98% 0.01 45); box-shadow: 4px 4px 0 oklch(28% 0.02 45 / 0.08); }"
     },
     {
       "name": "Testimonial Card",
@@ -177,7 +177,7 @@
       "refersTo": "testimonialCard",
       "description": "Stacked proof card with scroll-driven deck choreography.",
       "html": "<article class=\"testimonialCard\" data-testimonial-card><div class=\"testimonialCopy\"><span>01</span><h3>Akhil Lodha</h3><strong>Made the offer easier to choose</strong><p>They dug into what clients ask before they call.</p><small>Financial advisor</small></div><div class=\"testimonialSticker\"><b>Proof</b><span>first</span></div></article>",
-      "css": ".testimonialCard { border: 2px solid oklch(20% 0.02 45 / 0.14); border-radius: 16px; box-shadow: 14px 14px 0 oklch(20% 0.02 45 / 0.14); } .testimonialCard.testimonialWarm { background: oklch(98% 0.028 94); } .testimonialCard.testimonialRose { background: oklch(96% 0.06 350); } .testimonialCard.testimonialMint { background: oklch(96% 0.055 210); }"
+      "css": ".testimonialCard { border: 2px solid oklch(20% 0.02 45 / 0.14); border-radius: 16px; background: oklch(94% 0.035 82); box-shadow: 14px 14px 0 oklch(20% 0.02 45 / 0.14); } .testimonialSticker { background: oklch(76% 0.16 350); } .testimonialCard.testimonialWarm { background: oklch(98% 0.028 94); } .testimonialCard.testimonialRose { background: oklch(96% 0.06 350); } .testimonialCard.testimonialMint { background: oklch(96% 0.055 210); }"
     },
     {
       "name": "Pricing Card",
@@ -193,7 +193,7 @@
       "refersTo": "faqList",
       "description": "Details-based accordion with sticker shadow and orange border on open.",
       "html": "<div class=\"faqList\"><details><summary>How long does a build take?</summary><p>Most market-fit sites ship within 3-4 weeks.</p></details></div>",
-      "css": ".faqList details { border: 2px solid oklch(20% 0.02 45 / 0.1); border-radius: 8px; background: oklch(99% 0.01 70); box-shadow: 6px 6px 0 oklch(20% 0.02 45 / 0.08); } .faqList details[open] { border-color: oklch(56% 0.20 45); box-shadow: 9px 9px 0 oklch(20% 0.02 45 / 0.1); }"
+      "css": ".faqList details { border: 2px solid oklch(20% 0.02 45 / 0.1); border-radius: 8px; background: oklch(99% 0.01 70); box-shadow: 6px 6px 0 oklch(20% 0.02 45 / 0.08); } .faqList details[open] { border-color: oklch(56% 0.20 45); box-shadow: 9px 9px 0 oklch(20% 0.02 45 / 0.1); } .faqSection { background: oklch(97% 0.026 94); border-top: 2px solid oklch(20% 0.02 45 / 0.1); }"
     },
     {
       "name": "Copy Email Button",

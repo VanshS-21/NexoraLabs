@@ -77,7 +77,7 @@ components:
     rounded: "{rounded.pill}"
     padding: "0 20px"
   process-card:
-    backgroundColor: "{colors.surface-tinted}"
+    backgroundColor: "oklch(98% 0.028 94)"
     rounded: "{rounded.sm}"
   testimonial-card:
     backgroundColor: "{colors.surface-tinted}"
@@ -89,7 +89,7 @@ components:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.text-inverse}"
   faq-item:
-    backgroundColor: "{colors.surface-pale}"
+    backgroundColor: "{colors.surface}"
     rounded: "{rounded.sm}"
 ---
 
@@ -195,8 +195,8 @@ Every interactive component uses the sticker-shadow pattern for tactile presence
 - **Pricing Badge:** Pill-shaped, yellow background, ink text, sticker shadow `4px 4px 0`, -3deg rotation. Positioned overlapping the card top-left corner.
 
 ### Cards
-- **Process Cards:** 8px radius, tactile card tint background, 2px warm-dark border at 14% opacity, sticker shadow `12px 12px 0`. Alternate cards use colored backgrounds (sky tint, rose tint, yellow tint). Sticky positioning with scroll-driven stack-to-spread choreography. Hover lifts 5px with enhanced shadow.
-- **Testimonial Cards:** 16px radius, tactile card tint background, 2px warm-dark border at 14% opacity, combined sticker shadow `14px 14px 0`. Two-column layout (copy + dot pattern). Variants: warm (default), rose tint, mint tint. Scroll-driven deck choreography with rotation and offset.
+- **Process Cards:** 8px radius, light yellow-tinted background (`oklch(98% 0.028 94)`), 2px warm-darker border at 14% opacity, sticker shadow `12px 12px 0`. Alternate cards use colored backgrounds (sky tint, rose tint, yellow tint). Process icons use primary orange background with inverse text and `currentColor` SVG strokes. Sticky positioning with scroll-driven stack-to-spread choreography. Hover lifts 5px with enhanced shadow.
+- **Testimonial Cards:** 16px radius, tactile card tint background, 2px warm-darker border at 14% opacity, sticker shadow `14px 14px 0`. Two-column layout (copy + dot pattern). Testimonial sticker uses proof rose background instead of primary orange. Variants: warm (default), rose tint, mint tint. Scroll-driven deck choreography with rotation and offset.
 - **Pricing Cards:** 8px radius, ivory surface background, 2px warm-dark border at 12% opacity, sticker shadow `12px 12px 0`. Slight rotation (-2deg to 1.6deg) per card for pinned-proposal feel. Featured card: orange background with inverse text and radial gradient accent. Decorative circle element (rose or lime) at top-right. Hover straightens rotation and lifts 8px.
 - **Work Project Cards:** 16:10 aspect-ratio image with 10-12px dark border, 8px radius, sticker shadow `12-16px 12-16px 0`. Color-coded borders per category (sage, sky, ink, peach). Meta card overlaps image bottom with ivory background and sticker shadow.
 
@@ -207,7 +207,7 @@ Every interactive component uses the sticker-shadow pattern for tactile presence
 - **Nav Dots:** 44px circular touch targets for service and testimonial sections. Inner 10px dot fills orange when active (with 3px glow ring), lime when passed, ivory when upcoming.
 
 ### FAQ Accordion
-- **Style:** Ivory surface background, 2px warm-dark border at 10% opacity, 8px radius, sticker shadow `6px 6px 0`. Open state: orange border, enhanced shadow `9px 9px 0`, ivory background shift. Plus/minus toggle with orange color, 180deg rotation on open. Answer fades in with 260ms ease-out-quart.
+- **Style:** Ivory surface background, 2px warm-darker border at 10% opacity, 8px radius, sticker shadow `6px 6px 0`. Open state: orange border, enhanced shadow `9px 9px 0`, ivory background shift. Plus/minus toggle with orange color, 180deg rotation on open. Answer fades in with 260ms ease-out-quart.
 
 ### State Pages (Error, Not Found)
 - **Style:** Full-viewport centered layout. Radial sky gradient accent. Bricolage display heading in orange. Onest body copy in muted text. Primary CTA and ghost secondary CTA in a flex row.

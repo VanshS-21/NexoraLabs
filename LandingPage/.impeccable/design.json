@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-08T12:00:00Z",
+  "title": "Design System: Nexora Labs",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Nexora Orange",
+        "canonical": "oklch(65% 0.22 45)",
+        "tonalRamp": [
+          "oklch(20% 0.1 45)",
+          "oklch(35% 0.15 45)",
+          "oklch(50% 0.2 45)",
+          "oklch(65% 0.22 45)",
+          "oklch(75% 0.18 45)",
+          "oklch(85% 0.12 45)",
+          "oklch(92% 0.08 45)",
+          "oklch(97% 0.04 45)"
+        ]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Warm Cream",
+        "canonical": "oklch(97% 0.015 45)",
+        "tonalRamp": [
+          "oklch(15% 0.005 45)",
+          "oklch(30% 0.01 45)",
+          "oklch(45% 0.01 45)",
+          "oklch(60% 0.01 45)",
+          "oklch(75% 0.015 45)",
+          "oklch(85% 0.015 45)",
+          "oklch(92% 0.015 45)",
+          "oklch(97% 0.015 45)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Massive hero headlines only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Primary section titles."
+      }
+    },
+    "shadows": [
+      {
+        "name": "tactile-lift",
+        "value": "0 8px 24px oklch(0% 0 0 / 0.08)",
+        "purpose": "Applied to interactive elements on hover."
+      },
+      {
+        "name": "sticker-shadow",
+        "value": "4px 4px 0px oklch(0% 0 0 / 0.1)",
+        "purpose": "Signature offset shadow for decorative graphics."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-quint",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Standard easing for buttery smooth transitions."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main call to action. Energetic and pill-shaped.",
+      "html": "<button class=\"ds-btn-primary\">Get Started</button>",
+      "css": ".ds-btn-primary { background-color: #E9552E; color: #FFFFFF; padding: 14px 28px; border-radius: 9999px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; border: none; font-size: 1rem; cursor: pointer; transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.2s; } .ds-btn-primary:hover { transform: translateY(-2px); background-color: #D14421; box-shadow: 0 8px 24px oklch(0% 0 0 / 0.08); }"
+    },
+    {
+      "name": "Process Card",
+      "kind": "card",
+      "refersTo": "card-process",
+      "description": "Standard container for multi-step processes.",
+      "html": "<div class=\"ds-card-process\"><h3>1. Discovery</h3><p>A 30-min call to understand your business goals and competitive landscape.</p></div>",
+      "css": ".ds-card-process { background-color: #FFFBF7; border: 1px solid rgba(0,0,0,0.05); border-radius: 16px; padding: 32px; font-family: 'Plus Jakarta Sans', sans-serif; transition: transform 0.2s, box-shadow 0.2s; } .ds-card-process:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.03); } .ds-card-process h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: #443E38; } .ds-card-process p { font-size: 1rem; line-height: 1.6; color: #7A726A; margin: 0; }"
+    },
+    {
+      "name": "Featured Pricing Card",
+      "kind": "card",
+      "description": "Highlighted pricing plan with brand border and badge.",
+      "html": "<div class=\"ds-pricing-featured\"><div class=\"ds-badge\">Most Popular</div><h3>Growth</h3><div class=\"ds-price\">₹85,000</div><p>For established businesses.</p></div>",
+      "css": ".ds-pricing-featured { background: white; border: 2px solid #E9552E; border-radius: 24px; padding: 48px; position: relative; font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 20px 40px rgba(233, 85, 46, 0.1); } .ds-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #E9552E; color: white; padding: 8px 24px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; } .ds-pricing-featured h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #443E38; } .ds-price { font-size: 3.5rem; font-weight: 800; color: #E9552E; margin-bottom: 16px; line-height: 1; } .ds-pricing-featured p { color: #7A726A; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Vibrant Artisan",
+    "overview": "Nexora Labs embraces an aesthetic philosophy of simplicity, speed, and creativity, aiming to make even the most ordinary projects visually compelling. Their work is defined by clean, modern design choices that feel fresh and approachable. By balancing quick delivery with high-quality craftsmanship, they ensure clients get designs that are both efficient and impactful.",
+    "keyCharacteristics": [
+      "Warm & Inviting palette",
+      "Punchy & Playful orange accents",
+      "Tactile Hierarchy via physical-feeling elements",
+      "Typographic Authority with bold geometric sans"
+    ],
+    "rules": [
+      {
+        "name": "The 10% Pop Rule",
+        "body": "The primary orange is a high-chroma tool meant for impact. Use it on ≤10% of the interface.",
+        "section": "colors"
+      },
+      {
+        "name": "Flat at Rest Rule",
+        "body": "Surfaces are clean and flat by default. Depth is conveyed through bold tonal layering.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use OKLCH for all color declarations.",
+      "Do wrap body text at 65ch for legibility.",
+      "Do use the 'Sticker Shadow' for decorative graphics."
+    ],
+    "donts": [
+      "Don't use generic 'AI SLOP' generated assets.",
+      "Don't use standard SaaS blue or cold greys.",
+      "Don't use glassmorphism or overly blurred shadows."
+    ]
+  }
+}

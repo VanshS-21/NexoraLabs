@@ -1,10 +1,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-const socialLinks = [
-  { label: "Instagram", short: "Ig", href: "https://instagram.com" },
-  { label: "LinkedIn", short: "in", href: "https://linkedin.com" },
-  { label: "Behance", short: "Be", href: "https://behance.net" },
+const footerLinks = [
+  { label: "Work", short: "Wr", href: "#work" },
+  { label: "Plans", short: "Pl", href: "#pricing" },
+  { label: "FAQs", short: "Qa", href: "#faqs" },
 ] as const;
 
 export function FooterSection() {
@@ -20,8 +20,8 @@ export function FooterSection() {
       />
       <div className={styles.footerOverlay} aria-hidden="true" />
       <div className={styles.footerContent}>
-        <nav className={styles.footerSocials} aria-label="Social links">
-          {socialLinks.map((link) => (
+        <nav className={styles.footerSocials} aria-label="Footer links">
+          {footerLinks.map((link) => (
             <a href={link.href} aria-label={link.label} key={link.label}>
               {link.short}
             </a>
@@ -29,7 +29,7 @@ export function FooterSection() {
         </nav>
         <p className={styles.footerAvailability}>
           <span aria-hidden="true" />
-          Available for new project(s)
+          Available for new projects
         </p>
         <a className={styles.footerEmail} href="mailto:hello@nexoralabs.com">
           hello@nexoralabs.com

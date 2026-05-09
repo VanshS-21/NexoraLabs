@@ -4,24 +4,27 @@ const testimonials = [
   {
     name: "Akhil Lodha",
     role: "Financial advisor",
+    proof: "Clarified high-trust enquiries",
     quote:
-      "They dug deep into what our clients ask before they call us. The new website explains our value quickly and makes every enquiry feel warmer.",
+      "They dug into what our clients ask before they call. The new website explains our value quickly, handles trust upfront, and makes enquiries feel more prepared.",
     mark: "01",
     tone: "testimonialWarm",
   },
   {
     name: "Angelique Overton",
     role: "Salon owner",
+    proof: "Turned services into bookings",
     quote:
-      "Nexora took our scattered ideas and turned them into a site that feels polished without becoming stiff. We finally have a place we can send people with pride.",
+      "Nexora took our scattered service list, photos, and launch notes and turned them into a site that feels polished without becoming stiff.",
     mark: "02",
     tone: "testimonialRose",
   },
   {
     name: "Kevin Khoury",
     role: "Local studio founder",
+    proof: "Strategy, design, and launch in one flow",
     quote:
-      "The process was calm, quick, and very clear. They handled strategy, design, and launch without making us manage five different people.",
+      "The process was calm and clear. They handled strategy, design, and launch without making us chase five different people or translate design language.",
     mark: "03",
     tone: "testimonialMint",
   },
@@ -38,10 +41,16 @@ export function TestimonialStack() {
         <div className={styles.testimonialSticky}>
           <div className={styles.testimonialIntro}>
             <div className={styles.sectionKicker}>Client notes</div>
-            <h2 id="testimonials-heading">Kisses from our partners</h2>
+            <h2 id="testimonials-heading">Client proof, in plain words</h2>
             <p className={styles.sectionLead}>
-              Great partnerships leave stories behind. These are a few we keep close.
+              Practical outcomes from owners who needed their site to feel sharper, clearer, and easier to trust.
             </p>
+            <div className={styles.testimonialProgress} aria-hidden="true">
+              <span>Notes</span>
+              <div className={styles.progressTrack}>
+                <i />
+              </div>
+            </div>
           </div>
 
           <div className={styles.testimonialDeck} aria-label="Partner stories">
@@ -54,13 +63,14 @@ export function TestimonialStack() {
                 <div className={styles.testimonialCopy}>
                   <span>{testimonial.mark}</span>
                   <h3>{testimonial.name}</h3>
+                  <strong>{testimonial.proof}</strong>
                   <p>{testimonial.quote}</p>
                   <small>{testimonial.role}</small>
                 </div>
                 <div className={styles.testimonialPattern} aria-hidden="true" />
                 <div className={styles.testimonialSticker} aria-hidden="true">
-                  <b>Works</b>
-                  <span>smooth</span>
+                  <b>Proof</b>
+                  <span>first</span>
                 </div>
               </article>
             ))}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Onest:wght@400..800&display=swap');
 
 :root {
   /* Colors (Committed Strategy - Orange Anchor) */
@@ -29,7 +29,19 @@
   --space-5xl: 128px;
 
   /* Typography */
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --font-sans: 'Onest', system-ui, -apple-system, sans-serif;
+  --weight-body: 500;
+  --weight-body-strong: 650;
+  --weight-strong: 700;
+  --weight-label: 800;
+  --weight-heading: 800;
+  --weight-display: 800;
+  --leading-tight: 0.9;
+  --leading-heading: 1.05;
+  --leading-copy: 1.55;
+  --measure-copy: 65ch;
+  --measure-narrow: 48ch;
   
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -68,21 +80,25 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.5;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
   line-height: 1.1;
-  font-weight: 700;
+  font-weight: var(--weight-heading);
   letter-spacing: 0;
   text-wrap: balance;
 }
 
 p {
   text-wrap: pretty;
-  max-width: 65ch;
+  max-width: var(--measure-copy);
 }
 
 a {

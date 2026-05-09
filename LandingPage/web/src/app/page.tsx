@@ -8,23 +8,23 @@ import styles from "./page.module.css";
 
 const processSteps = [
   {
-    label: "Subscribe",
-    copy: "Book a 30-minute call. We learn your offer, audience, local market, and what must happen after a visitor lands.",
+    label: "Discover",
+    copy: "We learn your offer, audience, local market, and what must happen after a visitor lands.",
     icon: "target",
   },
   {
-    label: "Request",
-    copy: "Send your content, offers, photos, and preferences. We turn the messy pieces into a clear build plan.",
+    label: "Plan",
+    copy: "We turn scattered content, offers, photos, and preferences into a clear build plan.",
     icon: "spark",
   },
   {
-    label: "Revise",
-    copy: "Review the first direction with us. We refine the page until it feels trustworthy, useful, and unmistakably yours.",
+    label: "Refine",
+    copy: "You review one strong direction with us, then we tighten the story, visuals, and flow.",
     icon: "wand",
   },
   {
-    label: "Enjoy the results",
-    copy: "Launch with a fast custom site, simple handover docs, and the confidence that your web presence finally works.",
+    label: "Launch",
+    copy: "Launch with a fast custom site, simple handover docs, analytics, and ownership clarity.",
     icon: "chart",
   },
 ];
@@ -79,12 +79,36 @@ const packages = [
 ];
 
 const faqs = [
-  "Can I get both design and marketing help?",
-  "What makes you different from other agencies?",
-  "Do you only do design and websites?",
-  "How many requests can I send at once?",
-  "How does the subscription model work?",
-  "What if I do not like the first design?",
+  {
+    question: "Do you only build websites?",
+    answer:
+      "Websites are the center of the work, but we can shape the surrounding brand, copy, launch graphics, booking flow, and offer clarity when the site needs it.",
+  },
+  {
+    question: "Can you help if our content is messy?",
+    answer:
+      "Yes. Most clients come with scattered notes, old pages, WhatsApp screenshots, and half-written offers. We turn that into a usable page structure before design starts.",
+  },
+  {
+    question: "How involved do I need to be?",
+    answer:
+      "You stay close to the key decisions without managing every detail. Expect a discovery call, one clean direction, focused review rounds, and clear next steps.",
+  },
+  {
+    question: "What makes this different from a template site?",
+    answer:
+      "We design around your buyer, proof, service flow, and local trust signals. The goal is not a pretty shell. It is a site that makes someone feel safe contacting you.",
+  },
+  {
+    question: "How long does a typical project take?",
+    answer:
+      "A focused website usually takes 3-6 weeks depending on content readiness, number of pages, and whether development is included.",
+  },
+  {
+    question: "What if I do not like the first direction?",
+    answer:
+      "We make the first direction from an agreed brief, then use review rounds to tighten it. If the strategy is wrong, we revisit the brief before polishing pixels.",
+  },
 ];
 
 function ProcessGlyph({ type }: { type: string }) {
@@ -138,23 +162,17 @@ export default function Home() {
       </aside>
 
       <nav className={styles.fixedBottomNav} aria-label="Section navigation">
-        <a href="#about">
-          <span>01</span> About
-        </a>
         <a href="#process">
-          <span>02</span> Process
-        </a>
-        <a href="#services">
-          <span>03</span> Services
+          <span>01</span> Process
         </a>
         <a href="#work">
-          <span>04</span> Work
+          <span>02</span> Work
         </a>
         <a href="#pricing">
-          <span>05</span> Pricing
+          <span>03</span> Pricing
         </a>
-        <a href="#faqs">
-          <span>06</span> FAQs
+        <a href="#contact" className={styles.bottomNavCta}>
+          <span>04</span> Contact
         </a>
       </nav>
 
@@ -176,13 +194,30 @@ export default function Home() {
       <main>
         <section id="about" className={styles.heroSection}>
           <div className={styles.heroIntro}>
-            <p>We are a boutique studio helping busy local businesses get online without the agency runaround.</p>
+            <p>
+              We design and build trust-ready websites for clinics, coaches,
+              creators, founders, and premium local brands that need to look
+              credible fast.
+            </p>
+            <div className={styles.heroActions}>
+              <a href="#contact" className={styles.primaryAction}>
+                Book a discovery call
+              </a>
+              <a href="#work" className={styles.secondaryAction}>
+                See proof
+              </a>
+            </div>
+            <ul className={styles.heroTrustList} aria-label="Nexora project strengths">
+              <li>Strategy, design, and development</li>
+              <li>3-6 week focused launches</li>
+              <li>Built around real buyer trust</li>
+            </ul>
             <span aria-hidden="true">&darr;</span>
           </div>
           <div className={styles.heroTitleWrap}>
             <h1 className={styles.heroTitle}>
-              <span>Your New Design</span>
-              <span>Partner</span>
+              <span>Local Websites</span>
+              <span>That Earn Trust</span>
             </h1>
           </div>
         </section>
@@ -210,14 +245,22 @@ export default function Home() {
 
         <section id="services" className={styles.servicesSection} data-services-section>
           <div className={styles.servicesStickyFrame}>
-            <Image
-              src="/services-background.png"
-              alt=""
-              fill
-              sizes="100vw"
-              className={styles.servicesBackground}
-            />
+            <div className={styles.servicesMedia}>
+              <Image
+                src="/services-background.png"
+                alt=""
+                fill
+                sizes="100vw"
+                className={styles.servicesBackground}
+              />
+            </div>
             <div className={styles.servicesScrim} />
+            <div className={styles.serviceProgress} aria-hidden="true">
+              <span>Services</span>
+              <div className={styles.progressTrack}>
+                <i />
+              </div>
+            </div>
             <div className={styles.serviceStack} data-service-shell>
               <div className={styles.serviceRail} data-service-rail>
                 {services.map((service) => (
@@ -273,13 +316,10 @@ export default function Home() {
             <p className={styles.sectionLead}>The bits clients usually ask before we start building.</p>
           </div>
           <div className={styles.faqList}>
-            {faqs.map((question) => (
-              <details key={question}>
-                <summary>{question}</summary>
-                <p>
-                  We answer this during discovery with specifics for your business, timeline, and launch goals. The short version:
-                  we keep the process practical and transparent.
-                </p>
+            {faqs.map((faq) => (
+              <details key={faq.question}>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
               </details>
             ))}
           </div>

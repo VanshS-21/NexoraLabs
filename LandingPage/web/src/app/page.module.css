@@ -2867,6 +2867,230 @@
   }
 }
 
+/* Overdrive pass: a live launch route slip that tracks the page story. */
+.launchMap {
+  --launch-progress: 0;
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  z-index: 39;
+  display: none;
+  grid-template-columns: 132px minmax(360px, 1fr);
+  gap: 16px;
+  align-items: center;
+  width: min(760px, calc(100vw - 320px));
+  min-height: 94px;
+  padding: 15px 18px 15px 16px;
+  border: 2px solid oklch(20% 0.02 var(--hue-brand) / 0.14);
+  border-radius: 12px;
+  background:
+    repeating-linear-gradient(
+      -6deg,
+      oklch(99% 0.012 76) 0 11px,
+      oklch(96% 0.035 88) 11px 12px
+    );
+  color: var(--color-ink);
+  box-shadow:
+    0 16px 34px oklch(20% 0.02 var(--hue-brand) / 0.13),
+    9px 9px 0 oklch(20% 0.02 var(--hue-brand) / 0.12);
+  transform: translateX(-50%) rotate(-0.7deg);
+}
+
+.launchMap::before,
+.launchMap::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.launchMap::before {
+  top: -12px;
+  left: 26px;
+  width: 76px;
+  height: 20px;
+  border: 1px solid oklch(20% 0.02 var(--hue-brand) / 0.12);
+  border-radius: var(--radius-full);
+  background: var(--color-sky);
+  box-shadow: 2px 3px 0 oklch(20% 0.02 var(--hue-brand) / 0.08);
+  transform: rotate(-4deg);
+}
+
+.launchMap::after {
+  right: 18px;
+  bottom: -12px;
+  width: 62px;
+  height: 24px;
+  border-radius: 999px 999px 12px 12px;
+  background: oklch(90% 0.11 84 / 0.76);
+  transform: rotate(5deg);
+}
+
+.launchMapHeader {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.launchMapHeader span {
+  color: var(--color-primary);
+  font-size: 0.67rem;
+  font-weight: var(--weight-display);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.launchMapHeader b {
+  max-width: 12ch;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  line-height: 0.95;
+}
+
+.launchMapTrack {
+  position: absolute;
+  right: 36px;
+  left: 170px;
+  top: 43px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.launchMapRail,
+.launchMapRail i {
+  position: absolute;
+  inset: 7px 0 auto;
+  height: 3px;
+  border-radius: var(--radius-full);
+}
+
+.launchMapRail {
+  background: oklch(20% 0.02 var(--hue-brand) / 0.14);
+}
+
+.launchMapRail i {
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-rose),
+    var(--color-lime)
+  );
+  transform: scaleX(var(--launch-fill, 0));
+  transform-origin: left center;
+}
+
+.launchMapStops {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.launchMapStop {
+  --launch-stop-distance: 3;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 62px;
+  padding: 0 2px;
+  text-align: center;
+  color: oklch(35% 0.018 var(--hue-brand));
+  transform:
+    translateY(calc(var(--launch-stop-distance) * 1px))
+    scale(calc(1 - (var(--launch-stop-distance) * 0.015)));
+  transition:
+    color 220ms var(--ease-out),
+    transform 320ms var(--ease-out),
+    opacity 220ms var(--ease-out);
+}
+
+.launchMapStop::before {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  margin-bottom: 5px;
+  border: 2px solid oklch(20% 0.02 var(--hue-brand) / 0.15);
+  border-radius: 50%;
+  background: oklch(99% 0.01 70);
+  box-shadow: 3px 3px 0 oklch(20% 0.02 var(--hue-brand) / 0.1);
+  content: "";
+  transition:
+    background-color 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    transform 260ms var(--ease-out);
+}
+
+.launchMapStop span {
+  color: var(--color-primary);
+  font-size: 0.62rem;
+  font-weight: var(--weight-display);
+  line-height: 1;
+}
+
+.launchMapStop b {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.launchMapStop small {
+  overflow: hidden;
+  max-width: 100%;
+  color: oklch(42% 0.018 var(--hue-brand));
+  font-size: 0.61rem;
+  font-weight: var(--weight-strong);
+  line-height: 1.05;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.launchMapStop[data-launch-state="active"] {
+  color: oklch(14% 0.018 var(--hue-brand));
+  transform: translateY(-5px) scale(1.04);
+}
+
+.launchMapStop[data-launch-state="active"]::before {
+  background: var(--color-primary);
+  box-shadow:
+    0 0 0 6px oklch(56% 0.2 var(--hue-brand) / 0.13),
+    4px 5px 0 oklch(20% 0.02 var(--hue-brand) / 0.14);
+  transform: rotate(-8deg);
+}
+
+.launchMapStop[data-launch-state="passed"]::before {
+  background: var(--color-lime);
+}
+
+.launchMapStop:hover {
+  color: var(--color-primary);
+  transform: translateY(-5px) scale(1.045);
+}
+
+@media (min-width: 1120px) {
+  .launchMap {
+    display: grid;
+  }
+}
+
+@media (min-width: 1500px) {
+  .launchMap {
+    bottom: 24px;
+    width: min(820px, calc(100vw - 420px));
+  }
+}
+
 /* Delight pass: practical studio artifacts and small useful wins. */
 .heroLaunchNote {
   position: absolute;
@@ -3149,7 +3373,8 @@
 .workHeader a,
 .pricingCard a,
 .footerSocials a,
-.fixedBottomNav a {
+.fixedBottomNav a,
+.launchMapStop {
   transition:
     transform 220ms var(--ease-out),
     translate 160ms var(--ease-out-quart),
@@ -3321,9 +3546,23 @@
     translate: 0 0 !important;
   }
 
-  .pricingCard {
+.pricingCard {
     --price-lift: 0px !important;
     --reveal-y: 0px !important;
+  }
+
+  .launchMap {
+    --launch-progress: 1 !important;
+    transform: translateX(-50%) rotate(-0.7deg) !important;
+  }
+
+  .launchMapRail i {
+    transform: scaleX(1) !important;
+  }
+
+  .launchMapStop,
+  .launchMapStop[data-launch-state="active"] {
+    transform: none !important;
   }
 }
 

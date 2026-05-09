@@ -78,6 +78,14 @@ const packages = [
   },
 ];
 
+const launchStops = [
+  { href: "#about", label: "Notes", detail: "Messy idea" },
+  { href: "#process", label: "Plan", detail: "Clear route" },
+  { href: "#services", label: "Build", detail: "Handled stack" },
+  { href: "#work", label: "Proof", detail: "Buyer trust" },
+  { href: "#contact", label: "Launch", detail: "Start call" },
+] as const;
+
 const faqs = [
   {
     question: "Do you only build websites?",
@@ -175,6 +183,38 @@ export default function Home() {
         <a href="#contact" className={styles.bottomNavCta} aria-label="Go to Contact section">
           <span>04</span> Contact
         </a>
+      </nav>
+
+      <nav
+        className={styles.launchMap}
+        aria-label="Launch route navigation"
+        data-launch-map
+      >
+        <div className={styles.launchMapHeader}>
+          <span>Launch route</span>
+          <b>Notes to live site</b>
+        </div>
+        <div className={styles.launchMapTrack} aria-hidden="true">
+          <span className={styles.launchMapRail}>
+            <i data-launch-fill />
+          </span>
+        </div>
+        <ol className={styles.launchMapStops}>
+          {launchStops.map((stop, index) => (
+            <li key={stop.href}>
+              <a
+                href={stop.href}
+                className={styles.launchMapStop}
+                data-launch-stop
+                data-launch-index={index}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <b>{stop.label}</b>
+                <small>{stop.detail}</small>
+              </a>
+            </li>
+          ))}
+        </ol>
       </nav>
 
       <header className={styles.topNav}>

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 const easeOutQuart = (value: number) => 1 - Math.pow(1 - value, 4);
 const getPageTop = (element: HTMLElement) => element.getBoundingClientRect().top + window.scrollY;
+const launchTargets = ["#about", "#process", "#services", "#work", "#contact"] as const;
 
 const getAll = <T extends HTMLElement>(root: ParentNode | null | undefined, selector: string) =>
   Array.from(root?.querySelectorAll<T>(selector) ?? []);
@@ -62,6 +63,48 @@ export function ScrollChoreography() {
     const updateMetrics = () => {
       const viewportHeight = window.innerHeight || 1;
       const newUpdaters: Array<() => void> = [];
+
+      // Launch Map
+      const launchMap = document.querySelector<HTMLElement>("[data-launch-map]");
+      const launchFill = launchMap?.querySelector<HTMLElement>("[data-launch-fill]");
+      const launchStops = getAll<HTMLAnchorElement>(launchMap, "[data-launch-stop]");
+      const launchSections = launchTargets
+        .map((selector) => document.querySelector<HTMLElement>(selector))
+        .filter((section): section is HTMLElement => Boolean(section))
+        .map((section) => ({
+          id: section.id,
+          top: getPageTop(section),
+          bottom: getPageTop(section) + section.offsetHeight,
+        }));
+
+      if (launchMap && launchFill && launchStops.length && launchSections.length) {
+        const pageStart = launchSections[0].top;
+        const pageEnd = launchSections[launchSections.length - 1].bottom;
+
+        newUpdaters.push(() => {
+          const scrollY = window.scrollY;
+          const focusLine = scrollY + viewportHeight * 0.42;
+          const progress = reduceMotion.matches
+            ? 1
+            : clamp((focusLine - pageStart) / Math.max(1, pageEnd - pageStart));
+
+          let activeIndex = 0;
+          launchSections.forEach((section, index) => {
+            if (focusLine >= section.top - viewportHeight * 0.14) {
+              activeIndex = index;
+            }
+          });
+
+          launchMap.style.setProperty("--launch-progress", progress.toFixed(3));
+          launchFill.style.setProperty("--launch-fill", progress.toFixed(3));
+          launchStops.forEach((stop, index) => {
+            const distance = Math.abs(index - activeIndex);
+            stop.dataset.launchState =
+              index === activeIndex ? "active" : index < activeIndex ? "passed" : "upcoming";
+            stop.style.setProperty("--launch-stop-distance", Math.min(distance, 3).toFixed(2));
+          });
+        });
+      }
 
       // Greeting Section
       const greetingSection = document.querySelector<HTMLElement>("[data-greeting-section]");

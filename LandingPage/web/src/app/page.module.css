@@ -3806,3 +3806,180 @@
   }
 }
 
+/* Adapt pass: keep the pinned-card collage expressive without clipping on narrow screens. */
+.logo {
+  align-items: center;
+  min-height: 44px;
+  line-height: 1;
+  padding-inline: 3px;
+}
+
+.topNav {
+  background: oklch(97% 0.025 84);
+}
+
+.logo::after {
+  left: 0;
+  right: 0;
+  bottom: 7px;
+}
+
+.navLinks a {
+  justify-content: center;
+  min-width: 44px;
+  padding-inline: 4px;
+}
+
+.copyEmailButton {
+  min-height: 44px;
+}
+
+.workStage,
+.workHeader,
+.workProjectField,
+.workProject {
+  min-width: 0;
+}
+
+.workStage,
+.workProjectField {
+  width: 100%;
+  max-width: 100%;
+}
+
+.workProject,
+.workProjectImage {
+  max-width: 100%;
+}
+
+.footerEmail,
+.footerEmail span {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.footerEmail {
+  width: max-content;
+}
+
+.footerEmail span {
+  white-space: nowrap;
+}
+
+:global(#about),
+:global(#intro),
+:global(#process),
+:global(#services),
+:global(#work),
+:global(#pricing),
+:global(#faqs),
+:global(#contact) {
+  scroll-margin-top: 86px;
+}
+
+@media (max-width: 1099px) {
+  .workStage {
+    padding-inline: clamp(18px, 4.8vw, 44px);
+  }
+
+  .workHeader {
+    width: min(760px, 100%);
+    margin-inline: auto;
+  }
+
+  .workProjectField {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 48px);
+  }
+
+  .workProject,
+  .workProject:nth-child(1),
+  .workProject:nth-child(2),
+  .workProject:nth-child(3),
+  .workProject:nth-child(4) {
+    grid-column: 1 / -1;
+    width: min(100%, 660px);
+    margin: 0 auto;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .workProjectImage {
+    border-width: clamp(7px, 1.4vw, 10px);
+    box-shadow:
+      9px 9px 0 oklch(20% 0.02 var(--hue-brand) / 0.15),
+      0 18px 32px oklch(20% 0.02 var(--hue-brand) / 0.09);
+  }
+
+  .workProjectMeta {
+    width: min(calc(100% - 20px), 440px);
+    margin: -18px auto 0;
+  }
+}
+
+@media (max-width: 759px) {
+  .workSection {
+    padding-block: 58px 104px;
+  }
+
+  .workStage {
+    gap: 34px;
+  }
+
+  .workProjectMeta {
+    width: min(calc(100% - 14px), 420px);
+    padding: 10px 11px;
+  }
+
+  .contactSection {
+    padding: 104px clamp(18px, 6vw, 28px) 118px;
+  }
+
+  .footerContent {
+    width: 100%;
+  }
+
+  .footerAvailability {
+    justify-content: center;
+    max-width: min(100%, 320px);
+    line-height: 1.16;
+    text-wrap: balance;
+  }
+
+  .footerEmail {
+    font-size: clamp(2rem, 9.2vw, 3.05rem);
+    line-height: 0.94;
+  }
+
+  :global(#about),
+  :global(#intro),
+  :global(#process),
+  :global(#services),
+  :global(#work),
+  :global(#pricing),
+  :global(#faqs),
+  :global(#contact) {
+    scroll-margin-top: 76px;
+  }
+}
+
+@media (max-width: 340px) {
+  .footerEmail {
+    font-size: 2rem;
+  }
+
+  .footerSocials {
+    gap: 10px;
+  }
+
+  .footerSocials a {
+    min-width: 96px;
+    padding-inline: 18px;
+  }
+
+  .fixedBottomNav a {
+    gap: 4px;
+    font-size: 0.66rem;
+  }
+}
+

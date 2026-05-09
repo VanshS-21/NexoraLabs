@@ -8,6 +8,14 @@ const easeOutQuart = (value: number) => 1 - Math.pow(1 - value, 4);
 const getPageTop = (element: HTMLElement) => element.getBoundingClientRect().top + window.scrollY;
 const launchTargets = ["#about", "#process", "#services", "#work", "#contact"] as const;
 
+if (typeof window !== "undefined") {
+  console.log(
+    "%cNexora Labs%c Built with care \u2192 hello@nexoralabs.com",
+    "background:#5b4cd0;color:#fff;padding:4px 10px;border-radius:4px 0 0 4px;font-weight:700;font-size:12px;",
+    "background:#faf5eb;color:#3a3835;padding:4px 10px;border-radius:0 4px 4px 0;font-size:12px;"
+  );
+}
+
 const getAll = <T extends HTMLElement>(root: ParentNode | null | undefined, selector: string) =>
   Array.from(root?.querySelectorAll<T>(selector) ?? []);
 

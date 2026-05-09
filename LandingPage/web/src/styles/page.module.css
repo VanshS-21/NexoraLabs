@@ -1773,20 +1773,21 @@
 
 /* Contact form success state */
 .contactFormSuccess {
+  position: relative;
   display: grid;
   justify-items: center;
   gap: 12px;
-  padding: clamp(32px, 5vw, 56px) 0;
+  padding: 40px 20px;
   text-align: center;
 }
 
 .contactFormSuccessIcon {
+  position: relative;
   width: 48px;
   height: 48px;
   border: 2px solid oklch(from var(--color-warm-darker) L C H / 0.14);
   border-radius: 50%;
   background: var(--color-lime);
-  box-shadow: 4px 5px 0 oklch(from var(--color-warm-darker) L C H / 0.12);
   animation: checkPop 420ms var(--ease-out-quint) both;
 }
 
@@ -3732,6 +3733,104 @@
   }
 }
 
+/* Delight pass: hover micro-interactions and studio-table personality. */
+@media (hover: hover) {
+  .heroSticker,
+  .heroStamp {
+    transition: translate 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  }
+
+  .heroSticker:hover,
+  .heroStamp:hover {
+    translate: 0 -4px;
+    box-shadow: 7px 7px 0 oklch(from var(--color-warm-darker) L C H / 0.16);
+  }
+
+  .workSticker {
+    transition: translate 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  }
+
+  .workProject:hover .workSticker {
+    translate: 0 -5px;
+    box-shadow: 5px 5px 0 oklch(from var(--color-warm-darker) L C H / 0.16);
+  }
+
+  .testimonialSticker {
+    transition: translate 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  }
+
+  .testimonialCard:hover .testimonialSticker {
+    translate: 0 -3px;
+    box-shadow: 5px 6px 0 oklch(from var(--color-warm-darker) L C H / 0.14);
+  }
+
+  .processIcon {
+    transition: scale 220ms var(--ease-out);
+  }
+
+  .processCard:hover .processIcon {
+    animation: iconBounce 360ms var(--ease-out) both;
+  }
+
+  .faqList summary {
+    transition: color 220ms var(--ease-out);
+  }
+
+  .faqList details:hover summary {
+    color: var(--color-primary);
+  }
+
+  .pricingBadge {
+    transition: translate 220ms var(--ease-out);
+  }
+
+  .pricingCard:hover .pricingBadge {
+    translate: 0 -3px;
+  }
+}
+
+/* Contact form success confetti dots */
+.contactFormSuccessIcon::before {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-rose);
+  content: "";
+  opacity: 0;
+  animation: confettiDot 640ms var(--ease-out-quart) 340ms both;
+}
+
+.contactFormSuccess::before,
+.contactFormSuccess::after {
+  position: absolute;
+  border-radius: 50%;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  animation: confettiDot 640ms var(--ease-out-quart) both;
+}
+
+.contactFormSuccess::before {
+  top: 12px;
+  left: 18%;
+  width: 6px;
+  height: 6px;
+  background: var(--color-lime);
+  animation-delay: 400ms;
+}
+
+.contactFormSuccess::after {
+  bottom: 16px;
+  right: 22%;
+  width: 5px;
+  height: 5px;
+  background: var(--color-yellow);
+  animation-delay: 480ms;
+}
+
 /* Motion pass: one choreographed studio-table entrance, then restrained scroll reveals. */
 .announcementBanner,
 .topNav {
@@ -4086,6 +4185,20 @@
   }
 }
 
+@keyframes iconBounce {
+  0% { scale: 1; }
+  30% { scale: 1.18; }
+  50% { scale: 0.94; }
+  70% { scale: 1.06; }
+  100% { scale: 1; }
+}
+
+@keyframes confettiDot {
+  0% { opacity: 0; scale: 0; }
+  40% { opacity: 1; scale: 1.3; }
+  100% { opacity: 1; scale: 1; }
+}
+
 @supports (animation-timeline: view()) {
   .wrapper [data-reveal] {
     animation: revealOnView both;
@@ -4147,7 +4260,11 @@
   .faqList details[open] p,
   .footerAvailability span,
   .contactFormSuccessIcon,
+  .contactFormSuccessIcon::before,
   .contactFormSuccessIcon::after,
+  .contactFormSuccess::before,
+  .contactFormSuccess::after,
+  .processCard:hover .processIcon,
   .contactFormSuccessTitle,
   .contactFormSuccessCopy,
   .contactFormFieldError,

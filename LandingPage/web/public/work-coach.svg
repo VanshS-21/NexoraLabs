@@ -1,0 +1,21 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#1A1A2E"/>
+  <rect x="82" y="72" width="1036" height="616" rx="26" fill="#F0EDE6"/>
+  <rect x="82" y="72" width="1036" height="74" rx="26" fill="#16213E"/>
+  <circle cx="130" cy="110" r="12" fill="#E9552E"/>
+  <circle cx="166" cy="110" r="12" fill="#F2B84B"/>
+  <circle cx="202" cy="110" r="12" fill="#83B87A"/>
+  <rect x="256" y="98" width="264" height="23" rx="11.5" fill="#D4CFC4"/>
+  <rect x="844" y="94" width="178" height="31" rx="15.5" fill="#E9552E"/>
+  <text x="292" y="285" fill="#1A1A2E" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="800">Pulse</text>
+  <text x="292" y="364" fill="#1A1A2E" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="800">Coach</text>
+  <rect x="296" y="408" width="184" height="54" rx="27" fill="#E9552E"/>
+  <text x="331" y="443" fill="#FFF8EA" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Enquire</text>
+  <rect x="544" y="218" width="348" height="340" rx="28" fill="#2A2A4A"/>
+  <circle cx="718" cy="358" r="100" fill="none" stroke="#E9552E" stroke-width="8"/>
+  <circle cx="718" cy="358" r="60" fill="none" stroke="#F2B84B" stroke-width="6"/>
+  <circle cx="718" cy="358" r="20" fill="#E9552E"/>
+  <rect x="660" y="490" width="116" height="22" rx="11" fill="#F0EDE6" opacity="0.3"/>
+  <rect x="172" y="558" width="324" height="58" rx="12" fill="#E4DFD4"/>
+  <rect x="534" y="592" width="418" height="20" rx="10" fill="#D8D2C6"/>
+</svg>

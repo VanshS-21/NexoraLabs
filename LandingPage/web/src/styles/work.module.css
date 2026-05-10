@@ -175,8 +175,11 @@
   grid-column: span 12;
   position: relative;
   z-index: var(--work-z, 1);
+  display: block;
   opacity: var(--work-opacity);
   pointer-events: auto;
+  color: inherit;
+  text-decoration: none;
   transform:
     translate3d(var(--work-shift-x), var(--work-shift-y), 0)
     rotate(var(--work-rotate))
@@ -278,6 +281,11 @@
 
 .workProject:hover .workProjectImage img {
   transform: scale(1.04) translateY(-4px);
+}
+
+.workProject:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
 }
 
 .workSage .workProjectImage {

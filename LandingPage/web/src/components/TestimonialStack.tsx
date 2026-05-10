@@ -7,7 +7,6 @@ const testimonials = [
     proof: "Made the offer easier to choose",
     quote:
       "They dug into what clients ask before they call. The new site explains our value quickly, handles trust upfront, and makes enquiries feel more prepared.",
-    mark: "01",
     tone: "testimonialWarm",
   },
   {
@@ -16,7 +15,6 @@ const testimonials = [
     proof: "Turned a service list into bookings",
     quote:
       "Nexora took our scattered service list, photos, price questions, and launch notes and turned them into a site that feels polished without becoming stiff.",
-    mark: "02",
     tone: "testimonialRose",
   },
   {
@@ -25,7 +23,6 @@ const testimonials = [
     proof: "Strategy and build in one flow",
     quote:
       "The process was calm and clear. They handled positioning, design, and launch without making us chase five different people or translate web jargon.",
-    mark: "03",
     tone: "testimonialMint",
   },
 ] as const;
@@ -67,17 +64,11 @@ export function TestimonialStack() {
                 key={testimonial.name}
               >
                 <div className={styles.testimonialCopy}>
-                  <span>{testimonial.mark}</span>
-                  <h3>{testimonial.name}</h3>
-                  <strong>{testimonial.proof}</strong>
+                  <h3>{testimonial.proof}</h3>
                   <p>{testimonial.quote}</p>
-                  <small>{testimonial.role}</small>
+                  <small>{testimonial.name}, {testimonial.role}</small>
                 </div>
                 <div className={styles.testimonialPattern} aria-hidden="true" />
-                <div className={styles.testimonialSticker} aria-hidden="true">
-                  <b>Proof</b>
-                  <span>first</span>
-                </div>
               </article>
             ))}
           </div>

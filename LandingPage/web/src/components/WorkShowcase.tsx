@@ -4,7 +4,7 @@ import styles from "@/styles/work.module.css";
 const workProjects = [
   {
     title: "Corner Bistro",
-    category: "Restaurant enquiry path",
+    category: "Restaurant bookings",
     proof: "Menu, table booking, and private event enquiries arranged around one clear next step.",
     image: "/work-bistro.svg",
     tone: "workSage",
@@ -13,7 +13,7 @@ const workProjects = [
   },
   {
     title: "Northside Clinic",
-    category: "Clinic trust system",
+    category: "Clinic credibility",
     proof: "Reduced patient hesitation with service pages, credentials, FAQs, and direct contact routes.",
     image: "/work-clinic.svg",
     tone: "workSky",
@@ -45,10 +45,10 @@ export function WorkShowcase() {
     <section id="work" className={styles.workSection} data-work-section>
       <div className={styles.workStage} data-work-stage>
         <div className={styles.workHeader} data-work-center>
-          <p className={styles.workKicker}>Market-fit examples</p>
-          <h2>Buyer paths, pinned to the wall</h2>
+          <p className={styles.workKicker}>Selected work</p>
+          <h2>Real projects, pinned to the wall</h2>
           <p>Every preview starts with a real decision: book a table, trust a clinic, enquire about coaching, or choose a salon.</p>
-          <a href="#contact" aria-label="Find your website job">Find your website job</a>
+          <a href="#contact" aria-label="See what we'd build for you">See what we'd build for you</a>
         </div>
 
         <div className={styles.workProjectField} aria-label="Selected website projects">

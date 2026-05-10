@@ -9,8 +9,8 @@ import styles from "@/styles/page.module.css";
 
 const processSteps = [
   {
-    label: "Find the fit",
-    copy: "We identify your strongest buyer, their trigger, and the job your website needs to do.",
+    label: "Clarify the audience",
+    copy: "We identify who your website is for, what they need to hear, and what the site needs to achieve.",
     icon: "target",
   },
   {
@@ -19,7 +19,7 @@ const processSteps = [
     icon: "spark",
   },
   {
-    label: "Build the trust path",
+    label: "Design for trust",
     copy: "We design and code around the doubts someone has before they enquire, book, or call.",
     icon: "wand",
   },
@@ -33,9 +33,9 @@ const processSteps = [
 const services = [
   {
     number: "01",
-    title: "Positioning strategy",
+    title: "Offer and audience clarity",
     description:
-      "We clarify who the site is for, what they need to believe, and what proof moves them toward contact.",
+      "We clarify who the site is for, what they need to hear, and what proof moves them toward contact.",
     details: ["Audience and offer clarity", "Page jobs and sitemap", "Proof and trust plan"],
   },
   {
@@ -56,18 +56,18 @@ const services = [
 
 const packages = [
   {
-    name: "Market Fit Sprint",
+    name: "Clarity Sprint",
     price: "Rs 39,999",
-    intro: "For service businesses that need sharper positioning and page direction before building.",
+    intro: "For service businesses that need to clarify their offer and audience before building.",
     items: ["Discovery workshop", "Audience and offer clarity", "Sitemap and page jobs", "One custom design direction"],
-    action: "Book a fit call",
+    action: "Book a free call",
   },
   {
     name: "Website Launch",
     price: "Rs 89,999",
     intro: "For owners ready to turn services, proof, and reputation into a live custom website.",
     items: ["Everything from the sprint", "Custom frontend build", "Enquiry or booking path", "Analytics and handover"],
-    action: "Book a discovery call",
+    action: "Book a free call",
     featured: true,
   },
   {
@@ -75,15 +75,15 @@ const packages = [
     price: "Custom",
     intro: "For more complex service brands with multiple offers, locations, integrations, or growth goals.",
     items: ["Full website strategy", "Advanced integrations", "Multi-page content system", "Launch and growth support"],
-    action: "Plan the growth build",
+    action: "Talk about your project",
   },
 ];
 
 const launchStops = [
-  { href: "#about", label: "Fit", detail: "Right buyer" },
+  { href: "#about", label: "Audience", detail: "Right customer" },
   { href: "#process", label: "Offer", detail: "Clear pages" },
   { href: "#services", label: "Build", detail: "Owned site" },
-  { href: "#work", label: "Proof", detail: "Buyer trust" },
+  { href: "#work", label: "Proof", detail: "Real trust" },
   { href: "#contact", label: "Call", detail: "Start here" },
 ] as const;
 
@@ -101,7 +101,7 @@ const faqs = [
   {
     question: "Do you only build websites?",
     answer:
-      "The website is the center of the work. Around it, we can clarify positioning, shape copy, design the booking path, polish basic brand direction, and launch the site.",
+      "The website is the center of the work. Around it, we can clarify your offer, shape copy, design the booking flow, polish basic brand direction, and launch the site.",
   },
   {
     question: "What makes this different from a template site?",
@@ -111,12 +111,12 @@ const faqs = [
   {
     question: "Are we a good fit if we only want the cheapest site?",
     answer:
-      "Probably not. Nexora is for businesses that want a clearer market position, custom design, clean code, and an owned site they can grow from.",
+      "Probably not. Nexora is for businesses that want a clearer offer, custom design, clean code, and an owned site they can grow from.",
   },
   {
     question: "How long does a typical project take?",
     answer:
-      "A focused website usually takes 3-6 weeks depending on content readiness, number of pages, integrations, and how much positioning work is needed.",
+      "A focused website usually takes 3-6 weeks depending on content readiness, number of pages, integrations, and how much strategy work is needed.",
   },
   {
     question: "What if I do not like the first direction?",
@@ -142,7 +142,7 @@ export default function Home() {
     <div className={styles.wrapper} data-motion-root>
       <a href="#main" className="visually-hidden">Skip to main content</a>
       <div className={styles.announcementBanner} role="status" aria-label="Current focus">
-        Market-fit websites for service brands with real-world trust.
+        Websites that turn your local trust into enquiries.
       </div>
 
       <nav className={styles.fixedBottomNav} aria-label="Mobile section navigation">
@@ -167,7 +167,7 @@ export default function Home() {
         data-launch-visibility="hidden"
       >
         <div className={styles.launchMapHeader}>
-          <span>Fit route</span>
+          <span>Your route</span>
           <b>Trust to enquiries</b>
         </div>
         <div className={styles.launchMapTrack} aria-hidden="true">
@@ -226,10 +226,10 @@ export default function Home() {
             </p>
             <div className={styles.heroActions}>
               <a href="#contact" className={styles.primaryAction}>
-                Book a fit call
+                Book a free call
               </a>
               <a href="#work" className={styles.secondaryAction}>
-                See buyer paths
+                See our work
               </a>
             </div>
             <span aria-hidden="true">&darr;</span>
@@ -247,9 +247,9 @@ export default function Home() {
 
         <section id="process" className={styles.processSection} data-process-section>
           <div className={styles.sectionKicker}>Process</div>
-          <h2>Find the fit before the build</h2>
+          <h2>Clarify before you build</h2>
           <p className={styles.sectionLead}>
-            A clear path for busy owners: decide who the site must win over, what proof they need, and how the website should turn attention into action.
+            A clear path for busy owners: decide who the site must reach, what proof they need, and how the website should turn attention into action.
           </p>
           <div className={styles.processGrid} data-process-grid>
             {processSteps.map((step, index) => (
@@ -327,7 +327,7 @@ export default function Home() {
           <div className={styles.pricingIntro} data-reveal>
             <div className={styles.sectionKicker}>Pricing</div>
             <h2>Start with the right problem</h2>
-            <p>Choose the level of clarity and build support your business needs now. Every package begins with audience, proof, and page purpose.</p>
+            <p>Choose the level of strategy and build support your business needs. Every package starts with who the site is for, what proves you credible, and what each page needs to do.</p>
           </div>
           <div className={styles.pricingGrid}>
             {packages.map((item) => (
@@ -336,7 +336,7 @@ export default function Home() {
                 data-reveal
                 key={item.name}
               >
-                {item.featured ? <span className={styles.pricingBadge}>Most handled</span> : null}
+                {item.featured ? <span className={styles.pricingBadge}>Most chosen</span> : null}
                 <h3>{item.name}</h3>
                 <strong>{item.price}</strong>
                 <p>{item.intro}</p>
@@ -354,8 +354,8 @@ export default function Home() {
         <section id="faqs" className={styles.faqSection}>
           <div data-reveal>
             <div className={styles.sectionKicker}>FAQs</div>
-            <h2>Fit questions, answered</h2>
-            <p className={styles.sectionLead}>The practical questions owners ask before trusting us with their market position and website.</p>
+            <h2>Common questions, answered</h2>
+            <p className={styles.sectionLead}>The practical questions owners ask before trusting us with their website.</p>
           </div>
           <div className={styles.faqList}>
             {faqs.map((faq) => (

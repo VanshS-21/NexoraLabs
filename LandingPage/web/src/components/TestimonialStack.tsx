@@ -13,7 +13,7 @@ const testimonials = [
   {
     name: "Angelique Overton",
     role: "Salon owner",
-    proof: "Turned services into a booking path",
+    proof: "Turned a service list into bookings",
     quote:
       "Nexora took our scattered service list, photos, price questions, and launch notes and turned them into a site that feels polished without becoming stiff.",
     mark: "02",
@@ -41,9 +41,9 @@ export function TestimonialStack() {
         <div className={styles.testimonialSticky}>
           <div className={styles.testimonialIntro}>
             <div className={styles.sectionKicker}>Client notes</div>
-            <h2 id="testimonials-heading">Proof that sounds like the buyer</h2>
+            <h2 id="testimonials-heading">What clients say after launch</h2>
             <p className={styles.sectionLead}>
-              Practical outcomes from owners who needed clearer positioning, stronger trust cues, and a better route to contact.
+              Practical outcomes from owners who needed a clearer offer, more credibility, and more enquiries.
             </p>
             <nav className={styles.testimonialNav} aria-label="Testimonial cards">
               {testimonials.map((testimonial, index) => (

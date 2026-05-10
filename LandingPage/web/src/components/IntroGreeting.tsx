@@ -3,18 +3,18 @@ import styles from "@/styles/greeting.module.css";
 
 const capabilityPills = [
   { label: "Offer clarity", icon: "grid", pos: "pos-0", drift: "34" },
-  { label: "Buyer trust", icon: "square", pos: "pos-1", drift: "-42" },
-  { label: "Proof mapping", icon: "search", pos: "pos-2", drift: "52" },
+  { label: "Customer trust", icon: "square", pos: "pos-1", drift: "-42" },
+  { label: "Trust proof", icon: "search", pos: "pos-2", drift: "52" },
   { label: "Page strategy", icon: "frame", pos: "pos-3", drift: "-38" },
-  { label: "Booking paths", icon: "motion", pos: "pos-4", drift: "28" },
+  { label: "Bookings", icon: "motion", pos: "pos-4", drift: "28" },
   { label: "Custom build", icon: "compass", pos: "pos-5", drift: "-48" },
 ] as const;
 
 const greetingLines = [
   "Your best customers",
   "already trust you offline",
-  "we help the website",
-  "earn that trust",
+  "we make the website",
+  "show that trust",
   "before they enquire",
 ];
 

@@ -23,7 +23,7 @@ export function FooterSection() {
       <div className={styles.footerContent}>
         <div className={styles.footerAvailability} data-reveal>
           <span aria-hidden="true" />
-          Booking market-fit website builds for 2026
+          Booking website builds for 2026
         </div>
         <div className={styles.contactFormCard} data-reveal>
           <div className={styles.contactFormHeader}>
@@ -42,7 +42,7 @@ export function FooterSection() {
           ))}
         </nav>
         <div className={styles.footerRule} data-reveal aria-hidden="true" />
-        <p className={styles.footerTagline} data-reveal>Boutique web agency for owner-led service brands.</p>
+        <p className={styles.footerTagline} data-reveal>Small web agency for local service businesses.</p>
         <p className={styles.footerCopyright} data-reveal>&copy;2026 Nexora Labs &bull; All rights reserved</p>
       </div>
     </footer>

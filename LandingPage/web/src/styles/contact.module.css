@@ -581,7 +581,7 @@
 /* ── Responsive: mobile ── */
 @media (max-width: 759px) {
   .contactSection {
-    padding: 104px clamp(18px, 6vw, 28px) 118px;
+    padding: 104px clamp(18px, 6vw, 28px) 140px;
   }
 
   .footerContent {

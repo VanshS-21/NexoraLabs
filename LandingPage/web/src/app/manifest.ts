@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Nexora Labs",
     short_name: "Nexora",
     description:
-      "Market-fit websites for owner-led service brands with real-world trust.",
+      "Websites that turn local trust into enquiries for owner-led service brands.",
     start_url: "/",
     scope: "/",
     display: "standalone",

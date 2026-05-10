@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: siteUrl,
   applicationName: "Nexora Labs",
   title: {
-    default: "Nexora Labs | Market-Fit Websites For Service Brands",
+    default: "Nexora Labs | Websites That Turn Local Trust Into Enquiries",
     template: "%s | Nexora Labs",
   },
   description: siteDescription,
@@ -40,20 +40,20 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "Nexora Labs",
-    title: "Nexora Labs | Market-Fit Websites For Service Brands",
+    title: "Nexora Labs | Websites That Turn Local Trust Into Enquiries",
     description: siteDescription,
     images: [
       {
         url: "/services-background.png",
         width: 1672,
         height: 941,
-        alt: "Nexora Labs studio table for market-fit website planning",
+        alt: "Nexora Labs studio table for website planning",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexora Labs | Market-Fit Websites For Service Brands",
+    title: "Nexora Labs | Websites That Turn Local Trust Into Enquiries",
     description: siteDescription,
     images: ["/services-background.png"],
   },

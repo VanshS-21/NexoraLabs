@@ -13,8 +13,8 @@ const capabilityPills = [
 const greetingLines = [
   "Your best customers",
   "already trust you offline",
-  "we make the website",
-  "show that trust",
+  "we build the site",
+  "that proves it",
   "before they enquire",
 ];
 

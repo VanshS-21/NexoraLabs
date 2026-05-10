@@ -370,7 +370,7 @@ export default function Home() {
           <div className={styles.faqList}>
             {faqs.map((faq) => (
               <details data-reveal key={faq.question}>
-                <summary>{faq.question}</summary>
+                <summary><span>{faq.question}</span></summary>
                 <p>{faq.answer}</p>
               </details>
             ))}

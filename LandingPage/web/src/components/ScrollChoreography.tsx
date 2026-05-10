@@ -1,14 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useScroll, useMotionValueEvent } from "framer-motion";
 
 const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 const easeOutQuart = (value: number) => 1 - Math.pow(1 - value, 4);
 const getPageTop = (element: HTMLElement) => element.getBoundingClientRect().top + window.scrollY;
 const launchTargets = ["#about", "#process", "#services", "#work", "#contact"] as const;
 
-if (typeof window !== "undefined") {
+if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
   console.log(
     "%cNexora Labs%c Built with care \u2192 hello@nexoralabs.com",
     "background:#5b4cd0;color:#fff;padding:4px 10px;border-radius:4px 0 0 4px;font-weight:700;font-size:12px;",
@@ -66,7 +65,6 @@ interface CachedMetrics {
 }
 
 export function ScrollChoreography() {
-  const { scrollY } = useScroll();
   const [metrics, setMetrics] = useState(0);
   const metricsVersion = useRef(0);
   const cachedRefs = useRef<CachedRefs>({
@@ -87,6 +85,9 @@ export function ScrollChoreography() {
     testimonialTop: 0, testimonialHeight: 0,
     launchSectionTops: [],
   });
+  const reduceMotionRef = useRef(false);
+  const rafId = useRef(0);
+  const pendingScrollY = useRef(0);
 
   // Recalculate element positions on resize / load / fonts ready
   const recalc = useCallback(() => {
@@ -292,21 +293,46 @@ export function ScrollChoreography() {
     return () => btn.removeEventListener("click", handler);
   }, [metrics]);
 
-  // Main scroll-driven updater — reads from cached refs
-  useMotionValueEvent(scrollY, "change", (latestScrollY) => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const viewportHeight = window.innerHeight || 1;
-    const r = cachedRefs.current;
-    const m = cachedMetrics.current;
+  // Cache reduce-motion preference (recalculated on metrics change)
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    reduceMotionRef.current = mq.matches;
+    const handler = (e: MediaQueryListEvent) => { reduceMotionRef.current = e.matches; };
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", handler);
+    } else {
+      mq.addListener(handler);
+    }
+    return () => {
+      if (typeof mq.removeEventListener === "function") {
+        mq.removeEventListener("change", handler);
+      } else {
+        mq.removeListener(handler);
+      }
+    };
+  }, []);
+
+  // Main scroll-driven updater — native scroll listener, throttled to rAF
+  useEffect(() => {
+    const onScroll = () => {
+      pendingScrollY.current = window.scrollY;
+      if (rafId.current) return;
+      rafId.current = requestAnimationFrame(() => {
+        rafId.current = 0;
+        const scrollY = pendingScrollY.current;
+      const reduceMotion = reduceMotionRef.current;
+      const viewportHeight = window.innerHeight || 1;
+      const r = cachedRefs.current;
+      const m = cachedMetrics.current;
 
     // Top Nav scroll state (hysteresis prevents flicker at threshold)
     if (r.topNav) {
       const currentState = r.topNav.dataset.navState;
       const enterAt = viewportHeight * 0.12;
       const leaveAt = viewportHeight * 0.04;
-      if (currentState !== "scrolled" && latestScrollY > enterAt) {
+      if (currentState !== "scrolled" && scrollY > enterAt) {
         r.topNav.dataset.navState = "scrolled";
-      } else if (currentState === "scrolled" && latestScrollY < leaveAt) {
+      } else if (currentState === "scrolled" && scrollY < leaveAt) {
         r.topNav.dataset.navState = "top";
       }
     }
@@ -318,8 +344,8 @@ export function ScrollChoreography() {
       if (launchSections.length) {
         const pageStart = launchSections[0].top;
         const pageEnd = launchSections[launchSections.length - 1].bottom;
-        const focusLine = latestScrollY + viewportHeight * 0.42;
-        const progress = reduceMotion.matches ? 1 : clamp((focusLine - pageStart) / Math.max(1, pageEnd - pageStart));
+        const focusLine = scrollY + viewportHeight * 0.42;
+        const progress = reduceMotion ? 1 : clamp((focusLine - pageStart) / Math.max(1, pageEnd - pageStart));
 
         let activeIndex = 0;
         launchSections.forEach((section, index) => {
@@ -335,18 +361,18 @@ export function ScrollChoreography() {
           stop.setAttribute("aria-current", index === activeIndex ? "true" : "false");
         });
         r.launchMap.dataset.launchVisibility =
-          activeIndex === 0 && latestScrollY < pageStart + viewportHeight * 0.72 ? "hidden" : "visible";
+          activeIndex === 0 && scrollY < pageStart + viewportHeight * 0.72 ? "hidden" : "visible";
       }
     }
 
     // Greeting Section
     if (r.greetingSection) {
-      const progress = clamp((viewportHeight * 0.84 - (m.greetingCopyTop - latestScrollY)) / (viewportHeight * 0.36));
+      const progress = clamp((viewportHeight * 0.84 - (m.greetingCopyTop - scrollY)) / (viewportHeight * 0.36));
       r.greetingSection.style.setProperty("--scroll-progress", progress.toFixed(3));
 
       r.greetingInkLines.forEach((line, index) => {
         const offsetTop = m.inkLineTops[index] ?? 0;
-        const ink = clamp((viewportHeight * 0.82 - (offsetTop - latestScrollY)) / (viewportHeight * 0.24));
+        const ink = clamp((viewportHeight * 0.82 - (offsetTop - scrollY)) / (viewportHeight * 0.24));
         line.style.setProperty("--ink-percent", Math.round(ink * 100) + "%");
       });
 
@@ -360,7 +386,7 @@ export function ScrollChoreography() {
 
     // Process Section
     if (r.processSection && r.processGrid && r.processCards.length) {
-      if (reduceMotion.matches) {
+      if (reduceMotion) {
         r.processSection.style.setProperty("--process-progress", "1");
         r.processCards.forEach((card, index) => {
           card.style.setProperty("--process-stack-x", "0px");
@@ -370,7 +396,7 @@ export function ScrollChoreography() {
           card.style.setProperty("--process-z", String(index + 1));
         });
       } else {
-        const progress = easeOutQuart(clamp((viewportHeight * 0.86 - (m.processGridTop - latestScrollY)) / (viewportHeight * 0.48)));
+        const progress = easeOutQuart(clamp((viewportHeight * 0.86 - (m.processGridTop - scrollY)) / (viewportHeight * 0.48)));
         const remaining = 1 - progress;
         const stackCenterX = m.processGridWidth / 2;
         const stackCenterY = m.processGridHeight / 2;
@@ -396,7 +422,7 @@ export function ScrollChoreography() {
 
     // Services Section
     if (r.servicesSection && r.serviceShell && r.serviceRail && r.servicePanels.length) {
-      if (reduceMotion.matches || window.innerWidth < 760) {
+      if (reduceMotion || window.innerWidth < 760) {
         r.servicesSection.style.setProperty("--service-progress", "1");
         r.serviceRail.style.setProperty("--service-shift", "0px");
         r.servicePanels.forEach((panel) => {
@@ -410,7 +436,7 @@ export function ScrollChoreography() {
         const railScrollHeight = m.serviceRailScrollHeight;
         const shellClientHeight = m.serviceShellClientHeight;
         const scrollRange = Math.max(1, sectionOffsetHeight - viewportHeight);
-        const progress = clamp(-(sectionOffsetTop - latestScrollY) / scrollRange);
+        const progress = clamp(-(sectionOffsetTop - scrollY) / scrollRange);
         const maxShift = Math.max(0, railScrollHeight - shellClientHeight);
         const activeIndex = progress * (r.servicePanels.length - 1);
 
@@ -433,10 +459,10 @@ export function ScrollChoreography() {
     if (r.workSection && r.workStage && r.workCenter && r.workCards.length) {
       const stageOffsetTop = m.workStageTop;
       const stageOffsetHeight = m.workStageHeight;
-      const stageTop = stageOffsetTop - latestScrollY;
+      const stageTop = stageOffsetTop - scrollY;
       const stageBottom = stageTop + stageOffsetHeight;
       const visibleHeight = Math.max(0, Math.min(stageBottom, viewportHeight) - Math.max(stageTop, 0));
-      const spreadProgress = reduceMotion.matches ? 1 : easeOutQuart(clamp(visibleHeight / Math.min(stageOffsetHeight, viewportHeight * 0.72)));
+      const spreadProgress = reduceMotion ? 1 : easeOutQuart(clamp(visibleHeight / Math.min(stageOffsetHeight, viewportHeight * 0.72)));
       const remaining = 1 - spreadProgress;
       const middleIndex = (r.workCards.length - 1) / 2;
 
@@ -467,7 +493,7 @@ export function ScrollChoreography() {
 
     // Testimonial Section
     if (r.testimonialSection && r.testimonialCards.length) {
-      if (reduceMotion.matches) {
+      if (reduceMotion) {
         r.testimonialSection.style.setProperty("--testimonial-progress", "0");
         r.testimonialCards.forEach((card) => {
           card.style.setProperty("--testimonial-x", "0px");
@@ -483,7 +509,7 @@ export function ScrollChoreography() {
         const sectionOffsetTop = m.testimonialTop;
         const sectionOffsetHeight = m.testimonialHeight;
         const scrollRange = Math.max(1, sectionOffsetHeight - viewportHeight);
-        const progress = clamp(-(sectionOffsetTop - latestScrollY) / scrollRange);
+        const progress = clamp(-(sectionOffsetTop - scrollY) / scrollRange);
         const active = progress * Math.max(1, r.testimonialCards.length - 1);
 
         r.testimonialSection.style.setProperty("--testimonial-progress", progress.toFixed(3));
@@ -519,9 +545,14 @@ export function ScrollChoreography() {
 
     // Back to top
     if (r.backToTop) {
-      r.backToTop.dataset.visible = latestScrollY > viewportHeight * 1.2 ? "true" : "false";
+      r.backToTop.dataset.visible = scrollY > viewportHeight * 1.2 ? "true" : "false";
     }
-  });
+      }); // end rAF callback
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [metrics]);
 
   return <span aria-hidden="true" data-choreography-probe hidden />;
 }

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://nexoralabs.com";
+import { brand } from "@/content/brand";
+import { absoluteUrl } from "@/lib/metadata/build-metadata";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
+    host: brand.url,
   };
 }

@@ -1,5 +1,6 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Nexora Labs Web App Notes
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+- This app uses the Next.js App Router with TypeScript, Tailwind 4, and server-first routes.
+- Keep content in `src/content` and domain logic in `src/features`.
+- Keep browser-only code behind explicit client boundaries.
+- Run `npm run lint`, `npm run typecheck`, and `npm run build` before publishing.

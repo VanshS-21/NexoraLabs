@@ -3,8 +3,8 @@ import styles from "@/styles/greeting.module.css";
 
 const capabilityPills = [
   { label: "Offer clarity", icon: "grid", pos: "pos-0", drift: "34" },
-  { label: "Customer trust", icon: "square", pos: "pos-1", drift: "-42" },
-  { label: "Trust proof", icon: "search", pos: "pos-2", drift: "52" },
+  { label: "Buyer trust", icon: "square", pos: "pos-1", drift: "-42" },
+  { label: "Proof and credibility", icon: "search", pos: "pos-2", drift: "52" },
   { label: "Page strategy", icon: "frame", pos: "pos-3", drift: "-38" },
   { label: "Bookings", icon: "motion", pos: "pos-4", drift: "28" },
   { label: "Custom build", icon: "compass", pos: "pos-5", drift: "-48" },
@@ -34,19 +34,14 @@ function CapabilityGlyph({ type }: { type: string }) {
 
 export function IntroGreeting() {
   return (
-    <>
-      <section
+    <section
         id="intro"
         className={styles.greetingSection}
         aria-label="How Nexora helps"
         data-greeting-section
       >
         <div className={styles.greetingCenter}>
-          <div className={styles.greetingLabel}>
-            <span />
-            <p>Hello!</p>
-            <span />
-          </div>
+          <p className={styles.greetingLabel}>What we do</p>
           <h2 data-greeting-copy>
             {greetingLines.map((line, index) => (
               <span className={styles.greetingLine} data-ink-line style={{ "--line-index": index } as React.CSSProperties} key={line}>
@@ -55,9 +50,9 @@ export function IntroGreeting() {
             ))}
           </h2>
         </div>
-        <div className={styles.capabilityOrbit} aria-label="Nexora capabilities">
+        <ul className={styles.capabilityOrbit}>
           {capabilityPills.map((pill, index) => (
-            <div
+            <li
               className={`${styles.capabilityPill} ${styles[pill.pos]}`}
               data-capability-pill
               data-pill-drift={pill.drift}
@@ -68,10 +63,9 @@ export function IntroGreeting() {
                 <CapabilityGlyph type={pill.icon} />
               </span>
               <span>{pill.label}</span>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
-    </>
   );
 }

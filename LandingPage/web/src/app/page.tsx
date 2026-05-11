@@ -140,14 +140,13 @@ function ProcessGlyph({ type }: { type: string }) {
 export default function Home() {
   return (
     <div className={styles.wrapper} data-motion-root>
-      <a href="#main" className="visually-hidden">Skip to main content</a>
       <div className={styles.announcementBanner} role="status" aria-label="Current focus">
         Websites that turn your local trust into enquiries.
       </div>
 
       <nav className={styles.fixedBottomNav} aria-label="Mobile section navigation">
-        <a href="#process" data-nav-section="process" aria-label="Go to Process section">
-          <span>01</span> Process
+        <a href="#about" data-nav-section="about" aria-label="Go to About section">
+          <span>01</span> About
         </a>
         <a href="#work" data-nav-section="work" aria-label="Go to Work section">
           <span>02</span> Work
@@ -193,6 +192,7 @@ export default function Home() {
         </ol>
       </nav>
 
+      <a href="#main" className={styles.skipLink}>Skip to main content</a>
       <header className={styles.topNav} data-top-nav>
         <a href="#" className={styles.logo} aria-label="Nexora Labs home">
           <span>Nexora</span>
@@ -213,9 +213,6 @@ export default function Home() {
           <div className={styles.heroScene} aria-hidden="true">
             <div className={`${styles.heroArtifact} ${styles.heroArtifactBistro}`}>
               <Image src="/work-bistro.svg" alt="" fill sizes="22vw" priority />
-            </div>
-            <div className={`${styles.heroArtifact} ${styles.heroArtifactClinic}`}>
-              <Image src="/work-clinic.svg" alt="" fill sizes="18vw" priority />
             </div>
           </div>
           <div className={styles.heroIntro}>

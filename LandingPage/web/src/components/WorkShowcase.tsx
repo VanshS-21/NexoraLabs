@@ -6,6 +6,7 @@ const workProjects = [
     title: "Corner Bistro",
     category: "Table bookings up",
     proof: "Menu, booking, and event enquiries arranged around one clear next step.",
+    metric: "40% more bookings within 3 months",
     image: "/work-bistro.svg",
     tone: "workSage",
     sticker: "Bookings",
@@ -16,6 +17,7 @@ const workProjects = [
     title: "Northside Clinic",
     category: "Patient trust built",
     proof: "Service pages, credentials, and FAQs that reduce hesitation before the first call.",
+    quote: "Patients tell us the site answered their questions before they even called.",
     image: "/work-clinic.svg",
     tone: "workSky",
     sticker: "Care routes",
@@ -26,6 +28,7 @@ const workProjects = [
     title: "Pulse Coach",
     category: "Enquiries doubled",
     proof: "Personal brand turned into a focused coaching offer with a clear enquiry path.",
+    metric: "2x enquiries in 6 weeks",
     image: "/work-coach.svg",
     tone: "workInk",
     sticker: "Lead ready",
@@ -36,6 +39,7 @@ const workProjects = [
     title: "Bloom Studio",
     category: "Launch bookings live",
     proof: "Services, location, and price cues packaged for a premium local launch.",
+    quote: "We opened with a full book. The site did the explaining for us.",
     image: "/work-bloom.svg",
     tone: "workPeach",
     sticker: "Launch kit",
@@ -60,13 +64,13 @@ export function WorkShowcase() {
             <a
               href={project.href}
               className={`${styles.workProject} ${styles[project.tone]}`}
-              aria-label={`${project.title}, ${project.category}`}
+              aria-label={`${project.title}: ${project.category}. ${project.proof}`}
               data-work-card
               data-work-rotate={project.rotate}
               style={{ "--work-card-index": index } as React.CSSProperties}
               key={project.title}
             >
-              <span className={styles.workSticker} aria-hidden="true">
+              <span className={styles.workSticker}>
                 {project.sticker}
               </span>
               <div className={styles.workProjectImage}>
@@ -74,6 +78,7 @@ export function WorkShowcase() {
                   src={project.image}
                   alt={`Preview of ${project.title}`}
                   fill
+                  loading="lazy"
                   sizes="(max-width: 760px) 92vw, 48vw"
                 />
               </div>
@@ -81,6 +86,12 @@ export function WorkShowcase() {
                 <span>{project.category}</span>
                 <h3>{project.title}</h3>
                 <p>{project.proof}</p>
+                {"metric" in project && (
+                  <span className={styles.workMetric}>{project.metric}</span>
+                )}
+                {"quote" in project && (
+                  <p className={styles.workQuote}>{project.quote}</p>
+                )}
               </div>
             </a>
           ))}
